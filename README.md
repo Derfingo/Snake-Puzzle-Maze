@@ -1,2 +1,2 @@
-# Snake-Mobile
+# SnakeMobile
 Game prototype
