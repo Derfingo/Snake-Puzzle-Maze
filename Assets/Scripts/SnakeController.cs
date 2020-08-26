@@ -5,11 +5,11 @@ using UnityEngine.Events;
 public class SnakeController : MonoBehaviour
 {
     public UnityEvent OnEat;
-    protected Vector2Int gridPosition;
-    protected Rigidbody2D rb2d;
-    protected bool isEating = false;
-    protected int move;
-    public Transform SnakeHead;
+    private Vector2Int gridPosition;
+    private Rigidbody2D rb2d;
+    private bool isEating = false;
+    private int move;
+    [SerializeField] private Transform SnakeHead;
     public float CircleDiameter;
 
 
