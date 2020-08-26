@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -150,25 +149,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b3f736878891d947a3e8af18a389dd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodPrefab: {fileID: 8119724336000959299, guid: 69df7608c646a474da423e61e5f87142,
-    type: 3}
-  top: {fileID: 1460771356}
-  bottom: {fileID: 893717134}
-  left: {fileID: 995491388}
-  right: {fileID: 2062128733}
-  positionCamera: {fileID: 519420031}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -222,7 +202,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1817359882}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -290,7 +271,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &893717133
 GameObject:
@@ -912,7 +893,7 @@ RectTransform:
   - {fileID: 1714687250}
   - {fileID: 1590968884}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1057,7 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d558bbd05812246a7f40f81cc85d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 1590968883}
+  GameOverPanel: {fileID: 1590968883}
 --- !u!4 &1584022890
 Transform:
   m_ObjectHideFlags: 0
@@ -1066,11 +1047,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584022888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.912001, y: -0.06481822, z: 0.10556218}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1590968883
 GameObject:
@@ -1249,7 +1230,7 @@ GameObject:
   - component: {fileID: 1698768731}
   - component: {fileID: 1698768732}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1271,7 +1252,7 @@ Transform:
   - {fileID: 2062128733}
   - {fileID: 995491388}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1698768732
 Animator:
@@ -1409,7 +1390,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1817359882}
-  - component: {fileID: 1817359881}
   - component: {fileID: 1817359883}
   m_Layer: 0
   m_Name: FoodGeneration
@@ -1418,20 +1398,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1817359881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817359880}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a934c7a00ff3c864a89a7e6318129378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodPrefab: {fileID: 8119724336000959299, guid: 69df7608c646a474da423e61e5f87142,
-    type: 3}
 --- !u!4 &1817359882
 Transform:
   m_ObjectHideFlags: 0
@@ -1439,12 +1405,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817359880}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.53, y: 1.34, z: -247.86914}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1817359883
 MonoBehaviour:
@@ -1453,7 +1419,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817359880}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b3f736878891d947a3e8af18a389dd7, type: 3}
   m_Name: 
@@ -1464,7 +1430,7 @@ MonoBehaviour:
   bottom: {fileID: 893717134}
   left: {fileID: 995491388}
   right: {fileID: 2062128733}
-  positionCamera: {fileID: 0}
+  positionCamera: {fileID: 519420031}
 --- !u!1 &2014666046
 GameObject:
   m_ObjectHideFlags: 0

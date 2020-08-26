@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fea6e8bd838d149ba453c3ec460c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectSwipeOnlyAfterRelease: 0
+  detectSwipeOnlyAfterRelease: 1
   SwipeThreshold: 20
   runSpeed: 1
 --- !u!1 &8981513760210068057
