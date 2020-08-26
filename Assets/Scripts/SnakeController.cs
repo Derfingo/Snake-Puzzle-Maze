@@ -5,39 +5,41 @@ using UnityEngine.Events;
 public class SnakeController : MonoBehaviour
 {
     public UnityEvent OnEat;
-    protected Vector2Int gridPosition;
-    protected Rigidbody2D rb2d;
-    protected bool isEating = false;
-    protected int move;
-    public Transform SnakeHead;
-    public float CircleDiameter;
 
+    [SerializeField] private Transform SnakeHead;
+    [SerializeField] private float CircleDiameter;
+    private Vector2Int gridPosition;
+    private Rigidbody2D rb2d;
+    private bool isEating = false;
+    private int move;
 
-    private static int intialLen = 0;
-    public static int lengthTail = intialLen;
-
+    private static int intialLenScore = 0;
+    public static int LengthTail = intialLenScore;
 
     private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> crsPositions = new List<Vector2>();
    
-    void Awake()
+    private void Awake()
     {
         //starting position snake
         gridPosition = new Vector2Int(0, 0);
         transform.position = new Vector2(gridPosition.x, gridPosition.y);
-
-
     }
 
-    void Start()
+    private void Start()
     {
-        lengthTail = intialLen;
+        LengthTail = intialLenScore;
         rb2d = GetComponent<Rigidbody2D>();
         crsPositions.Add(SnakeHead.position);
         AddCircle();
     }
 
-    void Update()
+    private void Update()
+    {
+        SnakeTail();
+    }
+
+    private void SnakeTail()
     {
         //distance between two vectors
         float distance = ((Vector2)SnakeHead.position - crsPositions[0]).magnitude;
@@ -57,31 +59,31 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    void AddCircle()
+    private void AddCircle()
     {
         Transform circle = Instantiate(SnakeHead, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
         transform.localScale = Vector3.one * .90f;
         circle.localScale = Vector3.one * .85f;
         snakeCircles.Add(circle);
         crsPositions.Add(circle.position);
-        lengthTail++;
+        LengthTail++;
     }
 
-    void RemoveCircle()
+    private void RemoveCircle()
     {
         Destroy(snakeCircles[0].gameObject);
         snakeCircles.RemoveAt(0);
         crsPositions.RemoveAt(1);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Food")
         {
             isEating = true;
             Destroy(collision.gameObject);
             AddCircle();
-            IncreaseVelocity();
+            IncreaseVelocityPlayer();
             
             if (OnEat != null)
             {
@@ -97,11 +99,11 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    void IncreaseVelocity()
+    private void IncreaseVelocityPlayer()
     {
         if (isEating)
         {
-            GetComponent<SnakeMovement>().runSpeed += 0.10f;
+            GetComponent<SnakeMovement>().RunSpeed += 0.10f;
         }
     }
 }

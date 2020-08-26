@@ -9,26 +9,46 @@ public class SnakeMovement : MonoBehaviour
     private Vector2 fingerUp;
     private int move;
 
-    public bool detectSwipeOnlyAfterRelease = false;
-    public float SwipeThreshold = 20f;
-    [Range(0, 3)] public float runSpeed = 1f;
+    [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
+    [SerializeField] private float swipeThreshold = 20f;
+    [Range(1, 5)] public float RunSpeed = 1f;
 
-    float VerticalMove()
-    {
-        return Mathf.Abs(fingerDown.y - fingerUp.y);
-    }
-
-    float HorizontalMove()
-    {
-        return Mathf.Abs(fingerDown.x - fingerUp.x);
-    }
-
-    void Start()
+    private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void FixedUpdate()
+    {
+        Movement();
+    }
+
+    private void Update()
+    {
+        DetectSwipe();
+    }
+
+    private void Movement()
+    {
+        switch (move)
+        {
+            case 0:
+                rb2d.velocity = Vector2.up * RunSpeed;
+                break;
+            case 1:
+                rb2d.velocity = Vector2.right * RunSpeed;
+                break;
+            case 2:
+                rb2d.velocity = Vector2.down * RunSpeed;
+                break;
+            case 3:
+                rb2d.velocity = Vector2.left * RunSpeed;
+                break;
+        }
+        return;
+    }
+
+    private void DetectSwipe()
     {
         foreach (Touch touch in Input.touches)
         {
@@ -55,35 +75,10 @@ public class SnakeMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        Movement();
-    }
-
-    void Movement()
-    {
-        switch (move)
-        {
-            case 0:
-                rb2d.velocity = Vector2.up * runSpeed;
-                break;
-            case 1:
-                rb2d.velocity = Vector2.right * runSpeed;
-                break;
-            case 2:
-                rb2d.velocity = Vector2.down * runSpeed;
-                break;
-            case 3:
-                rb2d.velocity = Vector2.left * runSpeed;
-                break;
-        }
-        return;
-    }
-
-    void CheckSwipe()
+    private void CheckSwipe()
     {
         //Check if Vertical swipe
-        if (VerticalMove() > SwipeThreshold && VerticalMove() > HorizontalMove())
+        if (VerticalMove() > swipeThreshold && VerticalMove() > HorizontalMove())
         {
             if (move != 2 && fingerDown.y - fingerUp.y > 0)//Up swipe
             {
@@ -95,7 +90,7 @@ public class SnakeMovement : MonoBehaviour
             }
         }
         //Check if Horizontal swipe
-        else if (HorizontalMove() > SwipeThreshold && HorizontalMove() > VerticalMove())
+        else if (HorizontalMove() > swipeThreshold && HorizontalMove() > VerticalMove())
         {
             if (move != 3 && fingerDown.x - fingerUp.x > 0)//Right swipe
             {
@@ -106,5 +101,15 @@ public class SnakeMovement : MonoBehaviour
                 move = 3;
             }
         }
+    }
+
+    private float VerticalMove()
+    {
+        return Mathf.Abs(fingerDown.y - fingerUp.y);
+    }
+
+    private float HorizontalMove()
+    {
+        return Mathf.Abs(fingerDown.x - fingerUp.x);
     }
 }

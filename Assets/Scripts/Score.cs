@@ -3,22 +3,17 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    private Text lengthText = null;
-    int valueScore = SnakeController.lengthTail;
+    private Text textScore = null;
+    private int valueScore = SnakeController.LengthTail;
 
     void Awake()
     {
-        if (lengthText == null) lengthText = GetComponent<Text>();
+        if (textScore == null) textScore = GetComponent<Text>();
     }
 
-    void Start()
-    {
-        
-    }
-    
     void Update()
     {
-        lengthText.text = SnakeController.lengthTail.ToString();
+        textScore.text = SnakeController.LengthTail.ToString();
     }
 
 }
