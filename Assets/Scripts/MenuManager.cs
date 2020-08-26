@@ -5,29 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public static bool IsPaused = false;
+    public Animator animator;
+
     public GameObject GameOverPanel;
+    public GameObject PauseMenuPanel;
+
+    private static GameObject PauseMenuPanelStatic;
     private static GameObject gameOverPanelStatic;
+    public static bool IsPaused = false;
 
     private void Awake()
     {
-
         if (gameOverPanelStatic == null)
         {
             gameOverPanelStatic = GameOverPanel;
         }
 
-        IsPaused = false;
-    }
-
-    public void OnPlayHandler()
-    {
-        SceneManager.LoadScene(1);
-    }
-       
-    public void OnExitHandler()
-    {
-        Application.Quit();
+        if (PauseMenuPanelStatic == null)
+        {
+            PauseMenuPanelStatic = PauseMenuPanel;
+        }
     }
 
     public static void RestartGame()
@@ -38,6 +35,21 @@ public class MenuManager : MonoBehaviour
     public static void FailGame()
     {
         gameOverPanelStatic.SetActive(true);
+    }
+
+    public void OnPauseGame()
+    {
         IsPaused = true;
+        PauseMenuPanelStatic.SetActive(true);
+        Time.timeScale = 0f;
+        animator.SetBool("IsTransition", true);
+    }
+
+    public void ONResumeGame()
+    {
+        IsPaused = false;
+        PauseMenuPanelStatic.SetActive(false);
+        Time.timeScale = 1f;
+        animator.SetBool("IsTransition", false);
     }
 }
