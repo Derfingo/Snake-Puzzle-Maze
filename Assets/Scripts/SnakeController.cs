@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +8,7 @@ public class SnakeController : MonoBehaviour
     public UnityEvent OnEat;
 
     [SerializeField] private Transform SnakeHead;
-    [SerializeField] private float CircleDiameter;
+    [SerializeField] private float CircleDiameter = 0.25f;
     private Vector2Int gridPosition;
     private Rigidbody2D rb2d;
     private bool isEating = false;
@@ -78,13 +79,27 @@ public class SnakeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        //if (collision.gameObject.TryGetComponent(out SpawnFood food))
+        //{
+        //    isEating = true;
+        //    Destroy(collision.gameObject);
+        //    AddCircle();
+        //    IncreaseVelocityPlayer();
+
+        //    if (OnEat != null)
+        //    {
+        //        OnEat.Invoke();
+        //    }
+        //}
+
         if (collision.gameObject.tag == "Food")
         {
             isEating = true;
             Destroy(collision.gameObject);
             AddCircle();
             IncreaseVelocityPlayer();
-            
+
             if (OnEat != null)
             {
                 OnEat.Invoke();
@@ -103,7 +118,7 @@ public class SnakeController : MonoBehaviour
     {
         if (isEating)
         {
-            GetComponent<SnakeMovement>().RunSpeed += 0.10f;
+            SnakeMovement.RunSpeed += 0.10f;
         }
     }
 }

@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public Animator animator;
-
     public GameObject GameOverPanel;
     public GameObject PauseMenuPanel;
+    public GameObject GameMenu;
 
     private static GameObject PauseMenuPanelStatic;
     private static GameObject gameOverPanelStatic;
-    public static bool IsPaused = false;
+    private static GameObject gameMenuStatic;
+
+    public bool IsPaused = false;
 
     private void Awake()
     {
@@ -25,31 +24,40 @@ public class MenuManager : MonoBehaviour
         {
             PauseMenuPanelStatic = PauseMenuPanel;
         }
+
+        if (gameMenuStatic == null)
+        {
+            gameMenuStatic = GameMenu;
+        }
     }
 
-    public static void RestartGame()
+    public void RestartGame()
     {
+        Time.timeScale = 1f;
+        IsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     public static void FailGame()
     {
         gameOverPanelStatic.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void OnPauseGame()
     {
-        IsPaused = true;
+        gameMenuStatic.SetActive(true);
         PauseMenuPanelStatic.SetActive(true);
         Time.timeScale = 0f;
-        animator.SetBool("IsTransition", true);
+        IsPaused = true;
     }
 
-    public void ONResumeGame()
+    public void OnResumeGame()
     {
-        IsPaused = false;
-        PauseMenuPanelStatic.SetActive(false);
         Time.timeScale = 1f;
-        animator.SetBool("IsTransition", false);
+        PauseMenuPanelStatic.SetActive(false);
+        gameMenuStatic.SetActive(false);
+        IsPaused = false;
     }
 }

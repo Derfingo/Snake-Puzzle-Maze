@@ -7,7 +7,7 @@ public class SpawnFood : MonoBehaviour
     public Transform bottom;
     public Transform left;
     public Transform right;
-    public Camera positionCamera;
+    
 
     void Spawn()
     {
@@ -22,11 +22,9 @@ public class SpawnFood : MonoBehaviour
         //spawn food every 4 seconds, starting in 3
         InvokeRepeating("Spawn", 3, 4);
     }
-    
+
     void Update()
     {
-        CorrectPositionCamera();
-
         if (!foodPrefab)
         {
             Spawn();
@@ -35,18 +33,5 @@ public class SpawnFood : MonoBehaviour
         {
             return;
         }
-    }
-
-    private float CorrectPositionCamera()
-    {
-        if (Screen.orientation == ScreenOrientation.Portrait)
-        {
-            positionCamera.orthographicSize = 9f;
-        }
-        else
-        {
-            positionCamera.orthographicSize = 4f;
-        }
-        return 4f;
     }
 }

@@ -637,7 +637,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e57be0e2991c5224487e45479b3dc58f, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -655,7 +655,6 @@ GameObject:
   - component: {fileID: 982400981}
   - component: {fileID: 982400984}
   - component: {fileID: 982400983}
-  - component: {fileID: 982400982}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -685,25 +684,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1200, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &982400982
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982400980}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 816f3dad68256bc4f95e148b8aca2ffa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &982400983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,9 +1591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d558bbd05812246a7f40f81cc85d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 905610244}
   GameOverPanel: {fileID: 1590968883}
   PauseMenuPanel: {fileID: 982400980}
+  GameMenu: {fileID: 905610242}
+  IsPaused: 0
 --- !u!4 &1584022890
 Transform:
   m_ObjectHideFlags: 0
@@ -1680,7 +1661,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 816f3dad68256bc4f95e148b8aca2ffa, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1803,7 +1784,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1698768731}
-  - component: {fileID: 1698768732}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -1829,25 +1809,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1698768732
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698768730}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 76458a6c58144ba4cac7bc8026e2b268, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1714687249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,6 +2342,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: OnPauseGame
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2019028352}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

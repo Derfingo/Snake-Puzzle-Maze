@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class SnakeMovement : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class SnakeMovement : MonoBehaviour
 
     [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
     [SerializeField] private float swipeThreshold = 20f;
-    [Range(1, 5)] public float RunSpeed = 1f;
+    [Range(1, 5)] public static float RunSpeed = 1f;
 
     private void Start()
     {
@@ -45,7 +45,6 @@ public class SnakeMovement : MonoBehaviour
                 rb2d.velocity = Vector2.left * RunSpeed;
                 break;
         }
-        return;
     }
 
     private void DetectSwipe()
