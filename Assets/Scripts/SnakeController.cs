@@ -114,12 +114,9 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    private void IncreaseVelocityPlayer()
+    private float IncreaseVelocityPlayer()
     {
-        if (isEating)
-        {
-            SnakeMovement.RunSpeed += 0.10f;
-        }
+        return GetComponent<SnakeMovement>().RunSpeed += 0.10f;
     }
 }
 
