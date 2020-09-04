@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,12 +6,11 @@ public class SnakeController : MonoBehaviour
 {
     public UnityEvent OnEat;
 
-    [SerializeField] private Transform SnakeHead;
-    [SerializeField] private float CircleDiameter = 0.25f;
+    [SerializeField] protected Transform snakeHead;
+    [SerializeField] private float circleDiameter = 0.25f;
     private Vector2Int gridPosition;
-    private Rigidbody2D rb2d;
-    private bool isEating = false;
-    private int move;
+    protected Rigidbody2D rb2d;
+    protected bool isEating = false;
 
     private static int intialLenScore = 0;
     public static int LengthTail = intialLenScore;
@@ -31,7 +29,7 @@ public class SnakeController : MonoBehaviour
     {
         LengthTail = intialLenScore;
         rb2d = GetComponent<Rigidbody2D>();
-        crsPositions.Add(SnakeHead.position);
+        crsPositions.Add(snakeHead.position);
         AddCircle();
     }
 
@@ -43,26 +41,26 @@ public class SnakeController : MonoBehaviour
     private void SnakeTail()
     {
         //distance between two vectors
-        float distance = ((Vector2)SnakeHead.position - crsPositions[0]).magnitude;
+        float distance = ((Vector2)snakeHead.position - crsPositions[0]).magnitude;
 
-        if (distance > CircleDiameter)
+        if (distance > circleDiameter)
         {
             // Направление от старого положения головы, к новому
-            Vector2 direction = ((Vector2)SnakeHead.position - crsPositions[0]).normalized;
-            crsPositions.Insert(0, crsPositions[0] + direction * CircleDiameter);
+            Vector2 direction = ((Vector2)snakeHead.position - crsPositions[0]).normalized;
+            crsPositions.Insert(0, crsPositions[0] + direction * circleDiameter);
             crsPositions.RemoveAt(crsPositions.Count - 1);
-            distance -= CircleDiameter;
+            distance -= circleDiameter;
         }
 
         for (int i = 0; i < snakeCircles.Count; i++)
         {
-            snakeCircles[i].position = Vector2.Lerp(crsPositions[i + 1], crsPositions[i], distance / CircleDiameter);
+            snakeCircles[i].position = Vector2.Lerp(crsPositions[i + 1], crsPositions[i], distance / circleDiameter);
         }
     }
 
     private void AddCircle()
     {
-        Transform circle = Instantiate(SnakeHead, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
+        Transform circle = Instantiate(snakeHead, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
         transform.localScale = Vector3.one * .90f;
         circle.localScale = Vector3.one * .85f;
         snakeCircles.Add(circle);
@@ -114,10 +112,13 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    private float IncreaseVelocityPlayer()
+    public void IncreaseVelocityPlayer()
     {
-        return GetComponent<SnakeMovement>().RunSpeed += 0.10f;
+        GetComponent<SnakeMovement>().RunSpeed += .2f;
     }
+
+    
+
 }
 
     
