@@ -6,10 +6,12 @@ public class MenuManager : MonoBehaviour
     public GameObject GameOverPanel;
     public GameObject PauseMenuPanel;
     public GameObject GameMenu;
+    
 
     private static GameObject PauseMenuPanelStatic;
     private static GameObject gameOverPanelStatic;
     private static GameObject gameMenuStatic;
+    
 
     public bool IsPaused = false;
 

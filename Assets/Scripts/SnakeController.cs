@@ -112,7 +112,7 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    public void IncreaseVelocityPlayer()
+    private void IncreaseVelocityPlayer()
     {
         GetComponent<SnakeMovement>().RunSpeed += .2f;
     }
