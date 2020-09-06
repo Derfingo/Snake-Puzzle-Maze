@@ -2,29 +2,30 @@
 
 public class SpawnFood : MonoBehaviour
 {
-    public GameObject FoodPrefab;
-    public Transform Top;
-    public Transform Bottom;
-    public Transform Left;
-    public Transform Right;
+    public GameObject foodPrefab;
+    public Transform top;
+    public Transform bottom;
+    public Transform left;
+    public Transform right;
+    
 
-    private void Spawn()
+    void Spawn()
     {
-        float x = (float)Random.Range(Left.position.x + .3f, Right.position.x - .3f);
-        float y = (float)Random.Range(Bottom.position.y + .3f, Top.position.y - .3f);
+        int x = (int)Random.Range(left.position.x, right.position.x);
+        int y = (int)Random.Range(bottom.position.y, top.position.y);
 
-        Instantiate(FoodPrefab, new Vector2(x, y), Quaternion.identity);
+        Instantiate(foodPrefab, new Vector2(x, y), Quaternion.identity);
     }
 
-    private void Start()
+    void Start()
     {
         //spawn food every 4 seconds, starting in 3
         InvokeRepeating("Spawn", 3, 4);
     }
 
-    private void Update()
+    void Update()
     {
-        if (!FoodPrefab)
+        if (!foodPrefab)
         {
             Spawn();
         }
