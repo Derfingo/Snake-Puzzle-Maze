@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 893717135}
   - component: {fileID: 893717136}
   m_Layer: 0
-  m_Name: Buttom
+  m_Name: WallButtom
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -613,7 +613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905610242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1200, y: 0, z: 0}
+  m_LocalPosition: {x: 1800, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 982400981}
@@ -677,7 +677,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 800}
+  m_SizeDelta: {x: 1200, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &982400983
 MonoBehaviour:
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 995491389}
   - component: {fileID: 995491390}
   m_Layer: 0
-  m_Name: Left
+  m_Name: WallLeft
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1321,7 +1321,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1584022889}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: OnResumeGame
+        m_MethodName: ONResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1381,7 +1381,7 @@ GameObject:
   - component: {fileID: 1460771357}
   - component: {fileID: 1460771358}
   m_Layer: 0
-  m_Name: Top
+  m_Name: WallTop
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1642,7 +1642,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 800}
+  m_SizeDelta: {x: 1200, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1590968885
 Animator:
@@ -1708,11 +1708,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7904307852813416508, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
-        type: 3}
-      propertyPath: snakeHead
-      value: 
-      objectReference: {fileID: 1929668068}
     - target: {fileID: 8981513759085833843, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1960,12 +1955,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3f736878891d947a3e8af18a389dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodPrefab: {fileID: 8119724336000959299, guid: 69df7608c646a474da423e61e5f87142,
+  foodPrefab: {fileID: 8119724336000959299, guid: 69df7608c646a474da423e61e5f87142,
     type: 3}
-  Top: {fileID: 1460771356}
-  Bottom: {fileID: 893717134}
-  Left: {fileID: 995491388}
-  Right: {fileID: 2062128733}
+  top: {fileID: 1460771356}
+  bottom: {fileID: 893717134}
+  left: {fileID: 995491388}
+  right: {fileID: 2062128733}
 --- !u!1 &1846665667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,12 +2171,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1929668068 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8981513760210068056, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 1675253029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014666046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2355,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!114 &2019028355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2417,7 +2406,7 @@ GameObject:
   - component: {fileID: 2062128734}
   - component: {fileID: 2062128735}
   m_Layer: 0
-  m_Name: Right
+  m_Name: WallRight
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

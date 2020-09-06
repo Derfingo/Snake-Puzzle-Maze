@@ -115,10 +115,14 @@ public class SnakeController : MonoBehaviour
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void IncreaseVelocityPlayer()
 =======
     private float IncreaseVelocityPlayer()
 >>>>>>> parent of 443b771... Improved the code
+=======
+    public void IncreaseVelocityPlayer()
+>>>>>>> parent of e243ed0... Changed the code
     {
         return GetComponent<SnakeMovement>().RunSpeed += 0.10f;
     }
