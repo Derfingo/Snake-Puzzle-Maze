@@ -32,14 +32,4 @@ public class FoodGeneration : MonoBehaviour
         }
 
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("SnakeHead"))
-    //    {
-    //        other.GetComponent<SnakeController>().AddCircle();
-    //        Destroy(gameObject);
-    //    }
-    //}
-
 }

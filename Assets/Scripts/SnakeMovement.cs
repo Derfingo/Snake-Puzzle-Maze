@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Dynamic;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -11,7 +12,13 @@ public class SnakeMovement : MonoBehaviour
 
     [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
     [SerializeField] private float swipeThreshold = 20f;
-    [Range(1, 5)] public float RunSpeed = 1f;
+    [SerializeField][Range(1, 5)] private float runSpeed = 1f;
+    
+    public float RunSpeed
+    {
+        get => runSpeed;
+        set => runSpeed = value;
+    }
 
     private void Start()
     {
@@ -33,16 +40,16 @@ public class SnakeMovement : MonoBehaviour
         switch (move)
         {
             case 0:
-                rb2d.velocity = Vector2.up * RunSpeed;
+                rb2d.velocity = Vector2.up * runSpeed;
                 break;
             case 1:
-                rb2d.velocity = Vector2.right * RunSpeed;
+                rb2d.velocity = Vector2.right * runSpeed;
                 break;
             case 2:
-                rb2d.velocity = Vector2.down * RunSpeed;
+                rb2d.velocity = Vector2.down * runSpeed;
                 break;
             case 3:
-                rb2d.velocity = Vector2.left * RunSpeed;
+                rb2d.velocity = Vector2.left * runSpeed;
                 break;
         }
     }
@@ -111,4 +118,5 @@ public class SnakeMovement : MonoBehaviour
     {
         return Mathf.Abs(fingerDown.x - fingerUp.x);
     }
+
 }
