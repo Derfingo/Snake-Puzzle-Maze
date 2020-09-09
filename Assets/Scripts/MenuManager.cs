@@ -38,7 +38,6 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1f;
         IsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
     }
 
     public static void FailGame()

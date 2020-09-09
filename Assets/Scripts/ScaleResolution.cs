@@ -6,8 +6,8 @@ using UnityEngine;
 /// </summary>
 public class ScaleResolution : MonoBehaviour
 {
-    public Vector2 DefaultResolution = new Vector2(720, 1280);
-    [Range(0f, 1f)] public float WidthOrHeight = 0;
+    [SerializeField] private Vector2 DefaultResolution = new Vector2(720, 1280);
+    [SerializeField] [Range(0f, 1f)] private float WidthOrHeight = 0;
 
     private Camera componentCamera;
     
@@ -45,9 +45,7 @@ public class ScaleResolution : MonoBehaviour
     private float CalcVerticalFov(float hFovInDeg, float aspectRatio)
     {
         float hFovInRads = hFovInDeg * Mathf.Deg2Rad;
-
         float vFovInRads = 2 * Mathf.Atan(Mathf.Tan(hFovInRads / 2) / aspectRatio);
-
         return vFovInRads * Mathf.Rad2Deg;
     }
 }

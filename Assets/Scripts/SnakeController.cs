@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class SnakeController : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class SnakeController : MonoBehaviour
 
     [SerializeField] protected Transform snakeHead;
     [SerializeField] private float circleDiameter = 0.25f;
-    private Vector2Int gridPosition;
+
+    private Vector2 gridPosition;
+    protected Vector2 snake;
     protected Rigidbody2D rb2d;
     protected bool isEating = false;
 
@@ -17,12 +20,18 @@ public class SnakeController : MonoBehaviour
 
     private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> crsPositions = new List<Vector2>();
-   
+
+    public Vector2 GetSnakePosition()
+    {
+        return snake;
+    }
+
     private void Awake()
     {
         //starting position snake
-        gridPosition = new Vector2Int(0, 0);
+        gridPosition = new Vector2(0, 0);
         transform.position = new Vector2(gridPosition.x, gridPosition.y);
+        snake = transform.position;
     }
 
     private void Start()
@@ -30,6 +39,7 @@ public class SnakeController : MonoBehaviour
         LengthTail = intialLenScore;
         rb2d = GetComponent<Rigidbody2D>();
         crsPositions.Add(snakeHead.position);
+        AddCircle();
         AddCircle();
     }
 
@@ -77,20 +87,6 @@ public class SnakeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        //if (collision.gameObject.TryGetComponent(out SpawnFood food))
-        //{
-        //    isEating = true;
-        //    Destroy(collision.gameObject);
-        //    AddCircle();
-        //    IncreaseVelocityPlayer();
-
-        //    if (OnEat != null)
-        //    {
-        //        OnEat.Invoke();
-        //    }
-        //}
-
         if (collision.gameObject.tag == "Food")
         {
             isEating = true;
@@ -114,7 +110,7 @@ public class SnakeController : MonoBehaviour
 
     private void IncreaseVelocityPlayer()
     {
-        GetComponent<SnakeMovement>().RunSpeed += .2f;
+        GetComponent<SnakeMovement>().RunSpeed += .1f;
     }
 
     

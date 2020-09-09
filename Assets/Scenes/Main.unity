@@ -1728,11 +1728,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7904307852813416508, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
-        type: 3}
-      propertyPath: snakeHead
-      value: 
-      objectReference: {fileID: 1929668068}
     - target: {fileID: 8981513759085833843, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2196,12 +2191,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1929668068 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8981513760210068056, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 1675253029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014666046
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class SnakeMovement : MonoBehaviour
 
     [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
     [SerializeField] private float swipeThreshold = 20f;
-    [SerializeField][Range(1, 5)] private float runSpeed = 1f;
+    [SerializeField] [Range(1, 5)] private float runSpeed = 2f;
     
     public float RunSpeed
     {
