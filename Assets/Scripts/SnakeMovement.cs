@@ -9,6 +9,7 @@ public class SnakeMovement : MonoBehaviour
     private Vector2 fingerDown;
     private Vector2 fingerUp;
     private int move;
+    private Vector2 gridPosition;
 
     [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
     [SerializeField] private float swipeThreshold = 20f;
@@ -18,6 +19,13 @@ public class SnakeMovement : MonoBehaviour
     {
         get => runSpeed;
         set => runSpeed = value;
+    }
+
+    private void Awake()
+    {
+        //starting position snake
+        gridPosition = new Vector2(0, 0);
+        transform.position = new Vector2(gridPosition.x, gridPosition.y);
     }
 
     private void Start()
