@@ -9,8 +9,7 @@ public class SnakeController : MonoBehaviour
 
     [SerializeField] protected Transform snakeHead;
     [SerializeField] private float circleDiameter = 0.25f;
-
-    private Vector2 gridPosition;
+    
     protected Vector2 snake;
     protected Rigidbody2D rb2d;
     protected bool isEating = false;
@@ -28,9 +27,7 @@ public class SnakeController : MonoBehaviour
 
     private void Awake()
     {
-        //starting position snake
-        gridPosition = new Vector2(0, 0);
-        transform.position = new Vector2(gridPosition.x, gridPosition.y);
+        
         snake = transform.position;
     }
 

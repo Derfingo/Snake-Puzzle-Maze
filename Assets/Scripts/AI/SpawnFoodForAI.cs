@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodGeneration : MonoBehaviour
+public class SpawnFoodForAI : MonoBehaviour
 {
+    public Transform Top;
+    public Transform Bottom;
+    public Transform Left;
+    public Transform Right;
+
     public GameObject foodPrefab;
     protected GameObject currentFood;
     protected Vector2 currentPositionFood;
@@ -17,7 +22,8 @@ public class FoodGeneration : MonoBehaviour
 
     void RandomPositionFood()
     {
-        currentPositionFood = new Vector2(Random.Range(-3.2f, 2.8f), Random.Range(3.2f, -2.8f));
+        currentPositionFood = new Vector2(Random.Range(Left.position.x + .3f, Right.position.x - .3f),
+                                       Random.Range(Bottom.position.y + .3f, Top.position.y - .3f));
     }
 
     void Update()
