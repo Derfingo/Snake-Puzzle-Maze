@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
 public class SnakeTail : MonoBehaviour
 {
@@ -11,9 +10,17 @@ public class SnakeTail : MonoBehaviour
     private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> crsPositions = new List<Vector2>();
 
+    private Vector2 snake;
+
+    public Vector2 GetSnakePosition()
+    {
+        return snake;
+    }
+
     private void Start()
     {
         crsPositions.Add(snakeHead.position);
+        snake = transform.position;
         AddCircle();
         AddCircle();
     }
@@ -26,7 +33,8 @@ public class SnakeTail : MonoBehaviour
     private void MakeTail()
     {
         //distance between two vectors
-        float distance = ((Vector2)snakeHead.position - crsPositions[0]).magnitude;
+        //float distance = ((Vector2)snakeHead.position - crsPositions[0]).magnitude;
+        float distance = Vector2.Distance(snakeHead.position, crsPositions[0]);
 
         if (distance > circleDiameter)
         {
@@ -43,7 +51,7 @@ public class SnakeTail : MonoBehaviour
         }
     }
 
-    private void AddCircle()
+    public void AddCircle()
     {
         Transform circle = Instantiate(snakeHead, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
         transform.localScale = Vector3.one * .90f;

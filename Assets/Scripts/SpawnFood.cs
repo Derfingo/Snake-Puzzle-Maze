@@ -9,7 +9,8 @@ public class SpawnFood : MonoBehaviour
     public Transform Right;
 
     private Vector2 foodPosition;
-    private SnakeController snakePosition;
+    private Vector2 circleDeameter = new Vector2((float)0.4, (float)0.4);
+    private SnakeTail snakePosition;
 
     private void Spawn()
     {
@@ -20,14 +21,14 @@ public class SpawnFood : MonoBehaviour
 
             Instantiate(FoodPrefab, new Vector2(foodPosition.x, foodPosition.y), Quaternion.identity);
 
-        } while (foodPosition == snakePosition.GetSnakePosition());
+        } while (foodPosition == snakePosition.GetSnakePosition() + circleDeameter && foodPosition == foodPosition + circleDeameter);
     }
 
     private void Start()
     {
-        snakePosition = GameObject.Find("Snake").GetComponent<SnakeController>();
+        snakePosition = GameObject.Find("Snake").GetComponent<SnakeTail>();
         //spawn food every 4 seconds, starting in 3
-        InvokeRepeating("Spawn", 3, 4);
+        InvokeRepeating(nameof(Spawn), 0, 4);
     }
 
     private void Update()

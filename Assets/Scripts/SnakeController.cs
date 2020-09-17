@@ -27,7 +27,6 @@ public class SnakeController : MonoBehaviour
 
     private void Awake()
     {
-        
         snake = transform.position;
     }
 
@@ -82,35 +81,28 @@ public class SnakeController : MonoBehaviour
         crsPositions.RemoveAt(1);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Food")
-        {
-            isEating = true;
-            Destroy(collision.gameObject);
-            AddCircle();
-            IncreaseVelocityPlayer();
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Food")
+    //    {
+    //        isEating = true;
+    //        Destroy(collision.gameObject);
+    //        AddCircle();
+    //        IncreaseVelocityPlayer();
 
-            if (OnEat != null)
-            {
-                OnEat.Invoke();
-            }
-        }
+    //        if (OnEat != null)
+    //        {
+    //            OnEat.Invoke();
+    //        }
+    //    }
 
-        isEating = false;
+    //    isEating = false;
 
-        if (collision.gameObject.tag == "Wall")
-        {
-            MenuManager.FailGame();
-        }
-    }
-
-    private void IncreaseVelocityPlayer()
-    {
-        GetComponent<SnakeMovement>().RunSpeed += .1f;
-    }
-
-    
+    //    if (collision.gameObject.tag == "Wall")
+    //    {
+    //        MenuManager.FailGame();
+    //    }
+    //}
 
 }
 

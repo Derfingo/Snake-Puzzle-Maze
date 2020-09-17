@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class IsEating : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnHit()
     {
-        if (collision.gameObject.TryGetComponent(out SnakeController snake))
-        {
-            
-        }
+        Destroy(gameObject);
     }
 }

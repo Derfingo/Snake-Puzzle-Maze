@@ -1,4 +1,5 @@
 ﻿using System.Dynamic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,8 +14,8 @@ public class SnakeMovement : MonoBehaviour
 
     [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
     [SerializeField] private float swipeThreshold = 20f;
-    [SerializeField] [Range(1, 5)] private float runSpeed = 2f;
-    
+    [SerializeField] [Range(1, 5)] private float runSpeed = 1f;
+
     public float RunSpeed
     {
         get => runSpeed;
@@ -41,6 +42,11 @@ public class SnakeMovement : MonoBehaviour
     private void Update()
     {
         DetectSwipe();
+    }
+
+    public void IncreaseVelocitySnake()
+    {
+        RunSpeed += .1f;
     }
 
     private void Movement()
