@@ -9,6 +9,7 @@ TagManager:
   - NewSnake
   - Food
   - TaleSnake
+  - Node
   layers:
   - Default
   - TransparentFX

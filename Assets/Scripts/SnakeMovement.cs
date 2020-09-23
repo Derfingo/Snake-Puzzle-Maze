@@ -49,25 +49,6 @@ public class SnakeMovement : MonoBehaviour
         RunSpeed += .1f;
     }
 
-    private void Movement()
-    {
-        switch (move)
-        {
-            case 0:
-                rb2d.velocity = Vector2.up * runSpeed;
-                break;
-            case 1:
-                rb2d.velocity = Vector2.right * runSpeed;
-                break;
-            case 2:
-                rb2d.velocity = Vector2.down * runSpeed;
-                break;
-            case 3:
-                rb2d.velocity = Vector2.left * runSpeed;
-                break;
-        }
-    }
-
     private void DetectSwipe()
     {
         foreach (Touch touch in Input.touches)
@@ -92,6 +73,25 @@ public class SnakeMovement : MonoBehaviour
                 fingerDown = touch.position;
                 CheckSwipe();
             }
+        }
+    }
+
+    private void Movement()
+    {
+        switch (move)
+        {
+            case 0:
+                rb2d.velocity = Vector2.up * runSpeed;
+                break;
+            case 1:
+                rb2d.velocity = Vector2.right * runSpeed;
+                break;
+            case 2:
+                rb2d.velocity = Vector2.down * runSpeed;
+                break;
+            case 3:
+                rb2d.velocity = Vector2.left * runSpeed;
+                break;
         }
     }
 

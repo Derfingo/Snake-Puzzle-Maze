@@ -16,12 +16,12 @@ public class SpawnFood : MonoBehaviour
     {
         do
         {
-            foodPosition = new Vector2(Random.Range(Left.position.x + .3f, Right.position.x - .3f),
-                                       Random.Range(Bottom.position.y + .3f, Top.position.y - .3f));
+            foodPosition = new Vector2(Random.Range(Left.position.x, Right.position.x),
+                                       Random.Range(Bottom.position.y, Top.position.y));
 
             Instantiate(FoodPrefab, new Vector2(foodPosition.x, foodPosition.y), Quaternion.identity);
 
-        } while (foodPosition == snakePosition.GetSnakePosition() + circleDeameter && foodPosition == foodPosition + circleDeameter);
+        } while (foodPosition == snakePosition.GetSnakePosition() - circleDeameter && foodPosition == foodPosition - circleDeameter);
     }
 
     private void Start()

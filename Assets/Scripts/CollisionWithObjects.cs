@@ -23,7 +23,7 @@ public class CollisionWithObjects : MonoBehaviour
         {
             OnEating = true;
             collision.GetComponent<IsEating>().OnHit();
-            tail.AddCircle();
+            tail.AddNode();
             velocitySnake.IncreaseVelocitySnake();
 
             if (OnEat != null)
@@ -36,7 +36,18 @@ public class CollisionWithObjects : MonoBehaviour
         {
             MenuManager.FailGame();
         }
+
+        if (collision.gameObject.GetComponent<NodeTail>())
+        {
+            Debug.Log("Collision");
+        }
     }
 
-    
+    //foreach (var node in crsPositions)
+    //    {
+    //        if (Vector2.Distance(snakeHead.position, node) < 0.1)
+    //        {
+    //            Debug.Log("Collision");
+    //        }
+    //    }
 }

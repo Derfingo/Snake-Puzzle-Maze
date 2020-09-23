@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SnakeTail : MonoBehaviour
 {
     [SerializeField] protected Transform snakeHead;
+    [SerializeField] protected Transform nodeTail;
+
     [SerializeField] private float circleDiameter = .25f;
 
     private List<Transform> snakeCircles = new List<Transform>();
-    private List<Vector2> crsPositions = new List<Vector2>();
+    protected List<Vector2> crsPositions = new List<Vector2>();
+
+    public List<Vector2> GetCrsPosition
+    {
+        get => crsPositions.GetRange(1, crsPositions.Count - 1);
+    }
 
     private Vector2 snake;
 
@@ -19,10 +28,13 @@ public class SnakeTail : MonoBehaviour
 
     private void Start()
     {
-        crsPositions.Add(snakeHead.position);
+        snakeHead.position = nodeTail.position;
+        //crsPositions.Add(snakeHead.position);
+        crsPositions.Add(nodeTail.position);
+        //AddCircle();
+        AddNode();
+        AddNode();
         snake = transform.position;
-        AddCircle();
-        AddCircle();
     }
 
     private void Update()
@@ -54,6 +66,15 @@ public class SnakeTail : MonoBehaviour
     public void AddCircle()
     {
         Transform circle = Instantiate(snakeHead, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
+        transform.localScale = Vector3.one * .90f;
+        circle.localScale = Vector3.one * .85f;
+        snakeCircles.Add(circle);
+        crsPositions.Add(circle.position);
+    }
+
+    public void AddNode()
+    {
+        Transform circle = Instantiate(nodeTail, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
         transform.localScale = Vector3.one * .90f;
         circle.localScale = Vector3.one * .85f;
         snakeCircles.Add(circle);
