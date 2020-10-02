@@ -698,27 +698,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1426944397, guid: 768d4b1cebf8c284291ce48abb052d00, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 8119724336000959297, guid: 69df7608c646a474da423e61e5f87142,
-        type: 3}
-    - target: {fileID: 1426944397, guid: 768d4b1cebf8c284291ce48abb052d00, type: 3}
-      propertyPath: food
-      value: 
-      objectReference: {fileID: 8119724336000959299, guid: 69df7608c646a474da423e61e5f87142,
-        type: 3}
-    - target: {fileID: 1426944397, guid: 768d4b1cebf8c284291ce48abb052d00, type: 3}
-      propertyPath: forAI
-      value: 
-      objectReference: {fileID: 1072399598}
-    - target: {fileID: 1426944397, guid: 768d4b1cebf8c284291ce48abb052d00, type: 3}
       propertyPath: foodTarget
       value: 
       objectReference: {fileID: 1072399598}
-    - target: {fileID: 1426944397, guid: 768d4b1cebf8c284291ce48abb052d00, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1961735238782786596, guid: 768d4b1cebf8c284291ce48abb052d00,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -774,6 +756,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4015488361697498142, guid: 768d4b1cebf8c284291ce48abb052d00,
+        type: 3}
+      propertyPath: nodeTail
+      value: 
+      objectReference: {fileID: 3688265872851211905, guid: 9768fc8b5685f0b40aee78f15f050a86,
+        type: 3}
     - target: {fileID: 9107400137103121328, guid: 768d4b1cebf8c284291ce48abb052d00,
         type: 3}
       propertyPath: m_Name
@@ -784,7 +772,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1947922345, guid: 768d4b1cebf8c284291ce48abb052d00, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 768d4b1cebf8c284291ce48abb052d00, type: 3}
 --- !u!4 &1037297201 stripped
 Transform:
@@ -1279,9 +1268,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colors:
-  - {r: 0.08664116, g: 0.5065988, b: 0.5566038, a: 0}
-  - {r: 0.4731096, g: 0.16887684, b: 0.6509434, a: 0}
-  - {r: 0.45594832, g: 0.6886792, b: 0.11369702, a: 0}
+  - {r: 0.10012461, g: 0.43144432, b: 0.4716981, a: 0}
+  - {r: 0.34264424, g: 0.1516554, b: 0.4528302, a: 0}
+  - {r: 0.27798402, g: 0.3962264, b: 0.106532566, a: 0}
   speed: 2
   mainCamera: {fileID: 1446938126}
 --- !u!114 &1446938131
@@ -1426,7 +1415,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1947922344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 057a371511a64d344b22a271d69b1db4, type: 3}
+  m_Script: {fileID: 11500000, guid: c35918e2cce020240aea94797ef30d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnEat:
@@ -1435,7 +1424,6 @@ MonoBehaviour:
   tail: {fileID: 1947922346}
   isEating: {fileID: -8893663915094082639, guid: 69df7608c646a474da423e61e5f87142,
     type: 3}
-  velocitySnake: {fileID: 0}
   OnEating: 0
 --- !u!114 &1947922346 stripped
 MonoBehaviour:

@@ -1,25 +1,32 @@
-﻿using System.Dynamic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class SnakeMovement : MonoBehaviour
 {
+    [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
+    [SerializeField] private float swipeThreshold = 20f;
+    [SerializeField] [Range(1, 5)] private float runSpeed = 1f;
+
     private Rigidbody2D rb2d;
     private Vector2 fingerDown;
     private Vector2 fingerUp;
     private int move;
     private Vector2 gridPosition;
 
-    [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
-    [SerializeField] private float swipeThreshold = 20f;
-    [SerializeField] [Range(1, 5)] private float runSpeed = 1f;
+    private float VerticalMove => Mathf.Abs(fingerDown.y - fingerUp.y);
+
+    private float HorizontalMove => Mathf.Abs(fingerDown.x - fingerUp.x);
 
     public float RunSpeed
     {
-        get => runSpeed;
+        private get => runSpeed;
         set => runSpeed = value;
+    }
+
+    public void IncreaseVelocitySnake()
+    {
+        RunSpeed += .1f;
     }
 
     private void Awake()
@@ -42,11 +49,6 @@ public class SnakeMovement : MonoBehaviour
     private void Update()
     {
         DetectSwipe();
-    }
-
-    public void IncreaseVelocitySnake()
-    {
-        RunSpeed += .1f;
     }
 
     private void DetectSwipe()
@@ -82,15 +84,20 @@ public class SnakeMovement : MonoBehaviour
         {
             case 0:
                 rb2d.velocity = Vector2.up * runSpeed;
+                rb2d.rotation = 0f;
+
                 break;
             case 1:
                 rb2d.velocity = Vector2.right * runSpeed;
+                rb2d.rotation = -90f;
                 break;
             case 2:
                 rb2d.velocity = Vector2.down * runSpeed;
+                rb2d.rotation = 180f;
                 break;
             case 3:
                 rb2d.velocity = Vector2.left * runSpeed;
+                rb2d.rotation = 90f;
                 break;
         }
     }
@@ -98,7 +105,7 @@ public class SnakeMovement : MonoBehaviour
     private void CheckSwipe()
     {
         //Check if Vertical swipe
-        if (VerticalMove() > swipeThreshold && VerticalMove() > HorizontalMove())
+        if (VerticalMove > swipeThreshold && VerticalMove > HorizontalMove)
         {
             if (move != 2 && fingerDown.y - fingerUp.y > 0)//Up swipe
             {
@@ -110,7 +117,7 @@ public class SnakeMovement : MonoBehaviour
             }
         }
         //Check if Horizontal swipe
-        else if (HorizontalMove() > swipeThreshold && HorizontalMove() > VerticalMove())
+        else if (HorizontalMove > swipeThreshold && HorizontalMove > VerticalMove)
         {
             if (move != 3 && fingerDown.x - fingerUp.x > 0)//Right swipe
             {
@@ -122,15 +129,4 @@ public class SnakeMovement : MonoBehaviour
             }
         }
     }
-
-    private float VerticalMove()
-    {
-        return Mathf.Abs(fingerDown.y - fingerUp.y);
-    }
-
-    private float HorizontalMove()
-    {
-        return Mathf.Abs(fingerDown.x - fingerUp.x);
-    }
-
 }

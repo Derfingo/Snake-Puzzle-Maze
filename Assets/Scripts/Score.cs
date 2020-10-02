@@ -3,17 +3,27 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    private Text textScore = null;
-    private int valueScore = SnakeController.LengthTail;
+    [SerializeField] private CollisionWithObjects collisionWithObjects;
+    [SerializeField] private Text scoreText;
 
-    void Awake()
+    private void Start()
     {
-        if (textScore == null) textScore = GetComponent<Text>();
+        scoreText = GetComponent<Text>();
+        collisionWithObjects = GameObject.Find("Head").GetComponent<CollisionWithObjects>();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        textScore.text = SnakeController.LengthTail.ToString();
+        collisionWithObjects.ScoreChanged += OnScoreChanged;
     }
 
+    private void OnDisable()
+    {
+        collisionWithObjects.ScoreChanged -= OnScoreChanged;
+    }
+
+    private void OnScoreChanged(int score)
+    {
+        scoreText.text = "Score: " + score.ToString();
+    }
 }

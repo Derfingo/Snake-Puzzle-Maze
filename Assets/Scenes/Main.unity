@@ -1052,6 +1052,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1432909024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5421685500864790526, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675253029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057a371511a64d344b22a271d69b1db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1455682855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,15 +1432,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 292142534, guid: 6fec1e17a78becd4eb3d0a10735b77ec, type: 3}
+      propertyPath: spawnFood
+      value: 
+      objectReference: {fileID: 1706425676}
+    - target: {fileID: 311428346837191488, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242613421215765247, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8356905914709526651, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.11
+      objectReference: {fileID: 0}
     - target: {fileID: 8981513759085833843, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.009
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8981513759085833843, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8981513759085833843, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
@@ -1618,7 +1649,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 1'
+  m_Text: "Score: \n"
 --- !u!222 &1714687253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1639,6 +1670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee17a8b657a7a34fbbf8f4a0bed6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionWithObjects: {fileID: 1432909024}
+  scoreText: {fileID: 1714687252}
 --- !u!1 &1846665667
 GameObject:
   m_ObjectHideFlags: 0

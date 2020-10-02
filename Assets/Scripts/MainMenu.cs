@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject SnakeAI;
+    [SerializeField] protected GameObject SnakeAI;
 
     private void Start()
     {
@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator CoroutineMethod()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         SnakeAI.SetActive(true);
     }
@@ -28,6 +28,4 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-
-    
 }

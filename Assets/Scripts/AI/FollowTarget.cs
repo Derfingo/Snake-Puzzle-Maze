@@ -1,37 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 public class FollowTarget : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;
-    [SerializeField] private float visionRange = 10f;
     public SpawnFoodForAI foodTarget;
     protected Rigidbody2D rb2dAI;
     private float distanceToPlayer;
     private Vector2 startPosion = new Vector2(0, 1);
     private int move;
+    private Vector2 newTarget;
 
     private void Start()
     {
         transform.position = startPosion;
         rb2dAI = GetComponent<Rigidbody2D>();
+        newTarget = foodTarget.currentPositionFood;
     }
 
     private void Update()
     {
-        distanceToPlayer = Vector2.Distance(transform.position, foodTarget.currentPositionFood);
-
-        if (distanceToPlayer < visionRange)
+        if (foodTarget != null)
         {
-            ChasePlayer();
+            distanceToPlayer = Vector2.Distance(transform.position, foodTarget.currentPositionFood);
         }
         else
         {
-            StopChasingPlayer();
+            foodTarget.currentPositionFood = newTarget;
+            distanceToPlayer = Vector2.Distance(transform.position, foodTarget.currentPositionFood);
         }
+
+        ChasePlayer();
     }
 
     private void FixedUpdate()
@@ -89,10 +87,5 @@ public class FollowTarget : MonoBehaviour
                 //rb2dAI.velocity = Vector2.down * speed;
             }
         }
-    }
-
-    private void StopChasingPlayer()
-    {
-        rb2dAI.velocity = new Vector2(-2, 0);
     }
 }
