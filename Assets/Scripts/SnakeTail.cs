@@ -37,13 +37,10 @@ public class SnakeTail : MonoBehaviour
 
     private void MakeTail()
     {
-        //distance between two vectors
-        //float distance = ((Vector2)snakeHead.position - crsPositions[0]).magnitude;
         float distance = Vector2.Distance(snakeHead.position, crsPositions[0]);
 
         if (distance > circleDiameter)
         {
-            // Направление от старого положения головы, к новому
             Vector2 direction = ((Vector2)snakeHead.position - crsPositions[0]).normalized;
             crsPositions.Insert(0, crsPositions[0] + direction * circleDiameter);
             crsPositions.RemoveAt(crsPositions.Count - 1);
@@ -56,20 +53,9 @@ public class SnakeTail : MonoBehaviour
         }
     }
 
-    public void AddCircle()
-    {
-        Transform circle = Instantiate(snakeHead, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
-        transform.localScale = Vector3.one;
-        circle.localScale = Vector3.one;
-        snakeCircles.Add(circle);
-        crsPositions.Add(circle.position);
-    }
-
     public void AddNode()
     {
         Transform circle = Instantiate(nodeTail, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
-        transform.localScale = Vector3.one;
-        circle.localScale = Vector3.one;
         snakeCircles.Add(circle);
         crsPositions.Add(circle.position);
     }

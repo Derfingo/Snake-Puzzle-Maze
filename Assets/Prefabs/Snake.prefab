@@ -109,7 +109,6 @@ MonoBehaviour:
     type: 3}
   nodeFirst: {fileID: 8628952876385828377}
   nodeSecond: {fileID: 5546185595888493725}
-  spawnFood: {fileID: 0}
   circleDiameter: 0.28
 --- !u!1 &8981513760210068057
 GameObject:
@@ -141,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 8981513760210068057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.15, y: 1.15, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 8981513759085833843}
   m_RootOrder: 0
@@ -371,7 +370,7 @@ PrefabInstance:
     - target: {fileID: -3980758616533631812, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
       propertyPath: m_Radius
-      value: 0.12
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 8021565990540968030, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
@@ -451,7 +450,7 @@ PrefabInstance:
     - target: {fileID: -3980758616533631812, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
       propertyPath: m_Radius
-      value: 0.12
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 8021565990540968030, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}

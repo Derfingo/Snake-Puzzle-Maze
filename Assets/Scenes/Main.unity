@@ -1432,24 +1432,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 292142534, guid: 6fec1e17a78becd4eb3d0a10735b77ec, type: 3}
-      propertyPath: spawnFood
-      value: 
-      objectReference: {fileID: 1706425676}
-    - target: {fileID: 311428346837191488, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5242613421215765247, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
       propertyPath: m_Radius
-      value: 0.11
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8356905914709526651, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
       propertyPath: m_Radius
-      value: 0.11
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8981513759085833843, guid: 6fec1e17a78becd4eb3d0a10735b77ec,
         type: 3}
@@ -1556,12 +1547,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3f736878891d947a3e8af18a389dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodPrefab: {fileID: 8119724336000959299, guid: 69df7608c646a474da423e61e5f87142,
-    type: 3}
   Top: {fileID: 1460771356}
   Bottom: {fileID: 893717134}
   Left: {fileID: 995491388}
   Right: {fileID: 2062128733}
+  FoodPrefab: {fileID: 8119724336000959299, guid: 69df7608c646a474da423e61e5f87142,
+    type: 3}
 --- !u!1 &1714687249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,8 +1589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170, y: -123}
-  m_SizeDelta: {x: 200, y: 150}
+  m_AnchoredPosition: {x: 200, y: -120}
+  m_SizeDelta: {x: 350, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1714687251
 MonoBehaviour:
@@ -1642,14 +1633,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 150
-    m_Alignment: 4
+    m_MaxSize: 70
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Score: \n"
+  m_Text: 'Score: '
 --- !u!222 &1714687253
 CanvasRenderer:
   m_ObjectHideFlags: 0

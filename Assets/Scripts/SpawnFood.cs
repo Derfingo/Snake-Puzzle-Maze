@@ -2,15 +2,15 @@
 
 public class SpawnFood : MonoBehaviour
 {
-    [SerializeField] protected GameObject FoodPrefab;
-    private Vector2 foodPosition;
-    private Vector2 circleDeameter = new Vector2((float)0.4, (float)0.4);
-    private SnakeTail snakePosition;
-
     public Transform Top;
     public Transform Bottom;
     public Transform Left;
     public Transform Right;
+
+    [SerializeField] protected GameObject FoodPrefab;
+    private Vector2 foodPosition;
+    private Vector2 circleDeameter = new Vector2((float)0.4, (float)0.4);
+    private SnakeTail snakePosition;
 
     private void Spawn()
     {

@@ -29,7 +29,7 @@ public class FollowTarget : MonoBehaviour
             distanceToPlayer = Vector2.Distance(transform.position, foodTarget.currentPositionFood);
         }
 
-        ChasePlayer();
+        FollowFood();
     }
 
     private void FixedUpdate()
@@ -56,20 +56,18 @@ public class FollowTarget : MonoBehaviour
         }
     }
 
-    private void ChasePlayer()
+    private void FollowFood()
     {
         if (Mathf.Abs(transform.position.x - foodTarget.currentPositionFood.x) > 0.1)
         {
             if (transform.position.x < foodTarget.currentPositionFood.x && move != 3)
             {
                 move = 1;
-                //rb2dAI.velocity = Vector2.right * speed;
             }
 
             if (transform.position.x > foodTarget.currentPositionFood.x && move != 1)
             {
                 move = 3;
-                //rb2dAI.velocity = Vector2.left * speed;
             }
         }
 
@@ -78,13 +76,11 @@ public class FollowTarget : MonoBehaviour
             if (transform.position.y < foodTarget.currentPositionFood.y && move != 2)
             {
                 move = 0;
-                //rb2dAI.velocity = Vector2.up * speed;
             }
 
             if (transform.position.y > foodTarget.currentPositionFood.y && move != 0)
             {
                 move = 2;
-                //rb2dAI.velocity = Vector2.down * speed;
             }
         }
     }

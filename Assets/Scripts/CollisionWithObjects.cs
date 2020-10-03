@@ -3,14 +3,13 @@ using UnityEngine.Events;
 
 public class CollisionWithObjects : MonoBehaviour
 {
+    public UnityEvent OnEat;
+    public event UnityAction<int> ScoreChanged;
+
     [SerializeField] protected SnakeTail tail;
-    [SerializeField] private IsEating isEating;
     [SerializeField] protected SnakeMovement velocitySnake;
 
-    public event UnityAction<int> ScoreChanged;
     private int scoreValue = 0;
-
-    public UnityEvent OnEat;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
