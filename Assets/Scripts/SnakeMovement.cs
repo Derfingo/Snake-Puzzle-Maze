@@ -13,6 +13,8 @@ public class SnakeMovement : MonoBehaviour
     private Vector2 fingerUp;
     private int move;
     private Vector2 gridPosition;
+    private float rotateSpeed = 1f;
+    Quaternion q;
 
     private float VerticalMove => Mathf.Abs(fingerDown.y - fingerUp.y);
 
@@ -80,24 +82,29 @@ public class SnakeMovement : MonoBehaviour
 
     private void Movement()
     {
+        q = Quaternion.Euler(0.0f, 0.0f, rotateSpeed * Time.deltaTime);
+
         switch (move)
         {
             case 0:
                 rb2d.velocity = Vector2.up * runSpeed;
-                rb2d.rotation = 0f;
-
+                //rb2d.rotation = 0f;
+                rb2d.MoveRotation(0f);
                 break;
             case 1:
                 rb2d.velocity = Vector2.right * runSpeed;
-                rb2d.rotation = -90f;
+                //rb2d.rotation = -90f;
+                rb2d.MoveRotation(-90f);
                 break;
             case 2:
                 rb2d.velocity = Vector2.down * runSpeed;
-                rb2d.rotation = 180f;
+                //rb2d.rotation = 180f;
+                rb2d.MoveRotation(180f);
                 break;
             case 3:
                 rb2d.velocity = Vector2.left * runSpeed;
-                rb2d.rotation = 90f;
+                //rb2d.rotation = 90f;
+                rb2d.MoveRotation(90f);
                 break;
         }
     }

@@ -36,5 +36,7 @@ public class CollisionWithObjects : MonoBehaviour
         {
             MenuManager.FailGame();
         }
+
+        
     }
 }
