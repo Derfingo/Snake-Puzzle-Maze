@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
-
     public float RunEvery = 5;
     public bool RunOnAwake = false;
     public bool Loop = true;

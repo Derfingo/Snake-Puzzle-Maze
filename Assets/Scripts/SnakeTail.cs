@@ -21,13 +21,12 @@ public class SnakeTail : MonoBehaviour
 
     private void Start()
     {
-        snakeHead.position = nodeTail.position;
-        crsPositions.Add(nodeTail.position);
+        snakePosition = transform.position;
         crsPositions.Add(nodeFirst.position);
         snakeCircles.Add(nodeFirst);
         crsPositions.Add(nodeSecond.position);
         snakeCircles.Add(nodeSecond);
-        snakePosition = transform.position;
+        crsPositions.Add(nodeTail.position);
     }
 
     private void Update()

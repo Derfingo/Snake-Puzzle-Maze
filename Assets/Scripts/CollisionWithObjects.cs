@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.XR.WSA.Input;
 
 public class CollisionWithObjects : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CollisionWithObjects : MonoBehaviour
             ScoreChanged?.Invoke(scoreValue);
             collision.GetComponent<IsEating>().OnHit();
             tail.AddNode();
-            velocitySnake.IncreaseVelocitySnake();
+            velocitySnake.IncreaseRunSnake();
 
             if (OnEat != null)
             {
@@ -29,14 +30,17 @@ public class CollisionWithObjects : MonoBehaviour
 
         if (collision.gameObject.GetComponent<BoxCollider2D>())
         {
-            MenuManager.FailGame();
+            MenuManager.OnGameOver();
         }
 
         if (collision.gameObject.GetComponent<NodeTail>())
         {
-            MenuManager.FailGame();
+            MenuManager.OnGameOver();
         }
 
-        
+        if (collision.gameObject.GetComponent<CapsuleCollider2D>())
+        {
+            Debug.Log("Collision");
+        }
     }
 }

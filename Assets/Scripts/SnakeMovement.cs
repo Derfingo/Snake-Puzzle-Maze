@@ -13,8 +13,7 @@ public class SnakeMovement : MonoBehaviour
     private Vector2 fingerUp;
     private int move;
     private Vector2 gridPosition;
-    private float rotateSpeed = 1f;
-    Quaternion q;
+    private float speedRotation;
 
     private float VerticalMove => Mathf.Abs(fingerDown.y - fingerUp.y);
 
@@ -26,20 +25,15 @@ public class SnakeMovement : MonoBehaviour
         set => runSpeed = value;
     }
 
-    public void IncreaseVelocitySnake()
+    public void IncreaseRunSnake()
     {
         RunSpeed += .1f;
     }
 
-    private void Awake()
-    {
-        //starting position snake
-        gridPosition = new Vector2(0, 0);
-        transform.position = new Vector2(gridPosition.x, gridPosition.y);
-    }
-
     private void Start()
     {
+        gridPosition = new Vector2(3.5f, 6f);
+        transform.position = new Vector2(gridPosition.x, gridPosition.y);
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -80,31 +74,30 @@ public class SnakeMovement : MonoBehaviour
         }
     }
 
+    //Vector3 direction = (part0.position - part1.position);
+    //transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
     private void Movement()
     {
-        q = Quaternion.Euler(0.0f, 0.0f, rotateSpeed * Time.deltaTime);
+        speedRotation = 5f * runSpeed;
 
         switch (move)
         {
             case 0:
                 rb2d.velocity = Vector2.up * runSpeed;
-                //rb2d.rotation = 0f;
-                rb2d.MoveRotation(0f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), speedRotation * Time.deltaTime);
                 break;
             case 1:
                 rb2d.velocity = Vector2.right * runSpeed;
-                //rb2d.rotation = -90f;
-                rb2d.MoveRotation(-90f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -90), speedRotation * Time.deltaTime);
                 break;
             case 2:
                 rb2d.velocity = Vector2.down * runSpeed;
-                //rb2d.rotation = 180f;
-                rb2d.MoveRotation(180f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 180), speedRotation * Time.deltaTime);
                 break;
             case 3:
                 rb2d.velocity = Vector2.left * runSpeed;
-                //rb2d.rotation = 90f;
-                rb2d.MoveRotation(90f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 90), speedRotation * Time.deltaTime);
                 break;
         }
     }

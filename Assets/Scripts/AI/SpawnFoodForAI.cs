@@ -11,14 +11,13 @@ public class SpawnFoodForAI : MonoBehaviour
     protected GameObject currentFood;
     [HideInInspector] public Vector2 currentPositionFood;
     
-    public void AddNewFood()
+    private void AddNewFood()
     {
         RandomPositionFood();
         currentFood = Instantiate(foodPrefabAI, currentPositionFood, transform.rotation);
     }
 
-
-    public void RandomPositionFood()
+    private void RandomPositionFood()
     {
         currentPositionFood = new Vector2(Random.Range(Left.position.x + .3f, Right.position.x - .3f),
                                        Random.Range(Bottom.position.y + .3f, Top.position.y - .3f));

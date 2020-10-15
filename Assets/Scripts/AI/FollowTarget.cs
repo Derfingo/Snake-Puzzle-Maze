@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class FollowTarget : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;
+    public SnakeTail tail;
     public SpawnFoodForAI foodTarget;
     protected Rigidbody2D rb2dAI;
     private float distanceToPlayer;
@@ -19,17 +21,14 @@ public class FollowTarget : MonoBehaviour
 
     private void Update()
     {
-        if (foodTarget != null)
+        if (newTarget != null)
         {
-            distanceToPlayer = Vector2.Distance(transform.position, foodTarget.currentPositionFood);
+            FollowFood();
         }
         else
         {
-            foodTarget.currentPositionFood = newTarget;
-            distanceToPlayer = Vector2.Distance(transform.position, foodTarget.currentPositionFood);
+            newTarget = foodTarget.currentPositionFood;
         }
-
-        FollowFood();
     }
 
     private void FixedUpdate()
@@ -58,16 +57,18 @@ public class FollowTarget : MonoBehaviour
 
     private void FollowFood()
     {
+        distanceToPlayer = Vector2.Distance(transform.position, foodTarget.currentPositionFood);
+
         if (Mathf.Abs(transform.position.x - foodTarget.currentPositionFood.x) > 0.1)
         {
             if (transform.position.x < foodTarget.currentPositionFood.x && move != 3)
             {
-                move = 1;
+                move = 1; // right
             }
 
             if (transform.position.x > foodTarget.currentPositionFood.x && move != 1)
             {
-                move = 3;
+                move = 3; // left
             }
         }
 
@@ -75,12 +76,12 @@ public class FollowTarget : MonoBehaviour
         {
             if (transform.position.y < foodTarget.currentPositionFood.y && move != 2)
             {
-                move = 0;
+                move = 0; // up
             }
 
             if (transform.position.y > foodTarget.currentPositionFood.y && move != 0)
             {
-                move = 2;
+                move = 2; // down
             }
         }
     }

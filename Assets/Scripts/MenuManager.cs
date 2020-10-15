@@ -3,62 +3,61 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject GameOverPanel;
-    public GameObject PauseMenuPanel;
-    public GameObject GameMenu;
-    
+    public GameObject GameOver;
+    public GameObject PauseMenu;
+    public GameObject ButtonPauseMenu;
 
-    private static GameObject PauseMenuPanelStatic;
-    private static GameObject gameOverPanelStatic;
-    private static GameObject gameMenuStatic;
-    
-
-    public bool IsPaused = false;
+    private static GameObject PauseMenuPanel;
+    private static GameObject gameOverPanel;
+    private static GameObject buttonPauseMenu;
 
     private void Awake()
     {
-        if (gameOverPanelStatic == null)
+        if (buttonPauseMenu == null)
         {
-            gameOverPanelStatic = GameOverPanel;
+            buttonPauseMenu = ButtonPauseMenu;
         }
 
-        if (PauseMenuPanelStatic == null)
+        if (gameOverPanel == null)
         {
-            PauseMenuPanelStatic = PauseMenuPanel;
+            gameOverPanel = GameOver;
         }
 
-        if (gameMenuStatic == null)
+        if (PauseMenuPanel == null)
         {
-            gameMenuStatic = GameMenu;
+            PauseMenuPanel = PauseMenu;
         }
     }
 
-    public void RestartGame()
+    public static void RestartGame()
     {
         Time.timeScale = 1f;
-        IsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public static void FailGame()
+    public static void OnGameOver()
     {
-        gameOverPanelStatic.SetActive(true);
+        gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void OnPauseGame()
+    public static void OnPauseGame()
     {
-        gameMenuStatic.SetActive(true);
-        PauseMenuPanelStatic.SetActive(true);
+        PauseMenuPanel.SetActive(true);
+        buttonPauseMenu.SetActive(false);
         Time.timeScale = 0f;
-        IsPaused = true;
     }
 
-    public void OnResumeGame()
+    public static void OnResumeGame()
     {
         Time.timeScale = 1f;
-        PauseMenuPanelStatic.SetActive(false);
-        gameMenuStatic.SetActive(false);
-        IsPaused = false;
+        PauseMenuPanel.SetActive(false);
+        buttonPauseMenu.SetActive(true);
+    }
+
+    public static void OnMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }
