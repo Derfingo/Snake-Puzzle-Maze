@@ -125,8 +125,7 @@ MonoBehaviour:
     type: 3}
   nodeFirst: {fileID: 8628952876385828377}
   nodeSecond: {fileID: 5546185595888493725}
-  circleDiameter: 0.28
-  crsPositions: []
+  circleDiameter: 0.25
 --- !u!1 &8981513760210068057
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +239,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  MenuManager: {fileID: 0}
   tail: {fileID: 292142534}
   velocitySnake: {fileID: 9211952527497792327}
 --- !u!82 &311428346837191488
@@ -400,7 +400,7 @@ PrefabInstance:
     - target: {fileID: 8628952875674030170, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8628952875674030170, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
@@ -487,7 +487,7 @@ PrefabInstance:
     - target: {fileID: 8628952875674030170, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8628952875674030170, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}

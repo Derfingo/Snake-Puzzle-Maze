@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR.WSA.Input;
 
 public class CollisionWithObjects : MonoBehaviour
 {
     public UnityEvent OnEat;
+    public MenuManager MenuManager;
     public event UnityAction<int> ScoreChanged;
 
     [SerializeField] protected SnakeTail tail;
@@ -28,7 +28,7 @@ public class CollisionWithObjects : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.GetComponent<BoxCollider2D>())
+        if (collision.gameObject.GetComponent<CompositeCollider2D>())
         {
             MenuManager.OnGameOver();
         }

@@ -3,59 +3,43 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject GameOver;
-    public GameObject PauseMenu;
-    public GameObject ButtonPauseMenu;
+    public static bool gameIsPaused = false;
 
-    private static GameObject PauseMenuPanel;
-    private static GameObject gameOverPanel;
-    private static GameObject buttonPauseMenu;
+    public GameObject gameOver;
+    public GameObject pauseMenu;
+    public GameObject buttonPauseMenu;
 
-    private void Awake()
+    public void OnGameOver()
     {
-        if (buttonPauseMenu == null)
-        {
-            buttonPauseMenu = ButtonPauseMenu;
-        }
-
-        if (gameOverPanel == null)
-        {
-            gameOverPanel = GameOver;
-        }
-
-        if (PauseMenuPanel == null)
-        {
-            PauseMenuPanel = PauseMenu;
-        }
+        gameOver.SetActive(true);
+        Time.timeScale = 0f;
+        gameIsPaused = true;
     }
 
-    public static void RestartGame()
+    private void RestartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameIsPaused = false;
     }
 
-    public static void OnGameOver()
+    private void OnPauseGame()
     {
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    public static void OnPauseGame()
-    {
-        PauseMenuPanel.SetActive(true);
+        pauseMenu.SetActive(true);
         buttonPauseMenu.SetActive(false);
         Time.timeScale = 0f;
+        gameIsPaused = true;
     }
 
-    public static void OnResumeGame()
+    private void OnResumeGame()
     {
         Time.timeScale = 1f;
-        PauseMenuPanel.SetActive(false);
+        pauseMenu.SetActive(false);
         buttonPauseMenu.SetActive(true);
+        gameIsPaused = false;
     }
 
-    public static void OnMainMenu()
+    private void OnMainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
