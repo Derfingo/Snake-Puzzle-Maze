@@ -39,7 +39,6 @@ public class ColorCycler : MonoBehaviour
                 endColor = colors[numberColors + 1];
             }
 
-
             var newColor = Color.Lerp(startColor, endColor, Time.deltaTime * speed);
             SetColor(newColor);
 

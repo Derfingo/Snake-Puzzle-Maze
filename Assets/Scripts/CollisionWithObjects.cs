@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using Snake;
+using Food;
+using UI;
 
 public class CollisionWithObjects : MonoBehaviour
 {
@@ -8,7 +11,7 @@ public class CollisionWithObjects : MonoBehaviour
     public event UnityAction<int> ScoreChanged;
 
     [SerializeField] protected SnakeTail tail;
-    [SerializeField] protected SnakeMovement velocitySnake;
+    [SerializeField] protected Movement velocitySnake;
 
     private int scoreValue = 0;
 
@@ -20,7 +23,7 @@ public class CollisionWithObjects : MonoBehaviour
             ScoreChanged?.Invoke(scoreValue);
             collision.GetComponent<IsEating>().OnHit();
             tail.AddNode();
-            velocitySnake.IncreaseRunSnake();
+            velocitySnake.speed += 0.1f;
 
             if (OnEat != null)
             {
@@ -40,7 +43,7 @@ public class CollisionWithObjects : MonoBehaviour
 
         if (collision.gameObject.GetComponent<CapsuleCollider2D>())
         {
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
         }
     }
 }

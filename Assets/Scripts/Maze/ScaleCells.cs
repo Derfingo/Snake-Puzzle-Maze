@@ -4,12 +4,9 @@ using UnityEngine;
 
 namespace Maze
 {
-    public class Cell : MonoBehaviour
+    public class ScaleCells : MonoBehaviour
     {
         public GameObject WallLeft;
         public GameObject WallBottom;
-
     }
 }
-
-    

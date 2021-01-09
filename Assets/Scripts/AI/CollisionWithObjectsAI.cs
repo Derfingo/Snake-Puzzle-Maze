@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using Snake;
+using Food;
 
 public class CollisionWithObjectsAI : MonoBehaviour
 {

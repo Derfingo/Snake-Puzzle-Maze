@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeSpawner : MonoBehaviour
+namespace Maze
 {
-    public GameObject cellPrefab;
-
-    private void Start()
+    public class MazeSpawner : MonoBehaviour
     {
-        MazeGenerator generator = new MazeGenerator();
-        MazeGeneratorCell[,] maze = generator.GenerateMaze();
+        public GameObject cellPrefab;
 
-        for (int x = 0; x < maze.GetLength(0); x ++)
+        private void Start()
         {
-            for (int y = 0; y < maze.GetLength(1); y++)
-            {
-                Cell cell = Instantiate(cellPrefab, new Vector2(x, y), Quaternion.identity).GetComponent<Cell>();
+            MazeGenerator generator = new MazeGenerator();
+            MazeGeneratorCell[,] maze = generator.GenerateMaze();
 
-                cell.WallLeft.SetActive(maze[x, y].WallLeft);
-                cell.WallBottom.SetActive(maze[x, y].WallBottom);
+            for (int x = 0; x < maze.GetLength(0); x++)
+            {
+                for (int y = 0; y < maze.GetLength(1); y++)
+                {
+                    Cell cell = Instantiate(cellPrefab, new Vector2(x, y), Quaternion.identity).GetComponent<Cell>();
+
+                    cell.WallLeft.SetActive(maze[x, y].WallLeft);
+                    cell.WallBottom.SetActive(maze[x, y].WallBottom);
+                }
             }
         }
     }
