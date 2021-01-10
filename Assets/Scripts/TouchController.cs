@@ -3,10 +3,10 @@ using Snake;
 
 public class TouchController : MonoBehaviour
 {
+    public Movement movement;
+
     [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
     [SerializeField] private float swipeThreshold = 20f;
-
-    public Movement movement;
 
     private Vector2 fingerDown;
     private Vector2 fingerUp;
@@ -50,24 +50,33 @@ public class TouchController : MonoBehaviour
     {
         if (VerticalMove > swipeThreshold && VerticalMove > HorizontalMove)
         {
-            if (fingerDown.y - fingerUp.y > 0)
+            int verticalDirection = movement.CurDirection;
+
+            //Swipe up
+            if (fingerDown.y - fingerUp.y > 0 && verticalDirection != 1)
             {
-                movement.Move(Movement.Direction.Up);
+                movement.CurDirection = 0;
             }
-            else if (fingerDown.y - fingerUp.y < 0)
+            //Swipe down
+            if (fingerDown.y - fingerUp.y < 0 && verticalDirection != 0)
             {
-                movement.Move(Movement.Direction.Down);
+                movement.CurDirection = 1;
             }
         }
-        else if (HorizontalMove > swipeThreshold && HorizontalMove > VerticalMove)
+
+        if (HorizontalMove > swipeThreshold && HorizontalMove > VerticalMove)
         {
-            if (fingerDown.x - fingerUp.x > 0)
+            int horizontalDirection = movement.CurDirection;
+
+            //Swipe left
+            if (fingerDown.x - fingerUp.x < 0 && horizontalDirection != 3)
             {
-                movement.Move(Movement.Direction.Right);
+                movement.CurDirection = 2;
             }
-            else if (fingerDown.x - fingerUp.x < 0)
+            //Swipe right
+            if (fingerDown.x - fingerUp.x > 0 && horizontalDirection != 2)
             {
-                movement.Move(Movement.Direction.Left);
+                movement.CurDirection = 3;
             }
         }
     }

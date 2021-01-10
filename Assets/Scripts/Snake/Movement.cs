@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UI;
 
 namespace Snake
 {
@@ -7,10 +6,10 @@ namespace Snake
     public class Movement : MonoBehaviour
     {
         [SerializeField] public float speed = 1f;
-        public enum Direction : int { Up, Down, Left, Right }
 
         private Rigidbody2D rb2d;
         private Vector2 position;
+        public int CurDirection { get; set; } = 0;
 
         private void Start()
         {
@@ -19,20 +18,25 @@ namespace Snake
             rb2d = GetComponent<Rigidbody2D>();
         }
 
-        public void Move(Direction direction)
+        private void FixedUpdate()
         {
-            switch (direction)
+            Move();
+        }
+
+        public void Move()
+        {
+            switch (CurDirection)
             {
-                case Direction.Up:
+                case 0:
                     rb2d.velocity = Vector2.up * speed;
                     break;
-                case Direction.Down:
+                case 1:
                     rb2d.velocity = Vector2.down * speed;
                     break;
-                case Direction.Left:
+                case 2:
                     rb2d.velocity = Vector2.left * speed;
                     break;
-                case Direction.Right:
+                case 3:
                     rb2d.velocity = Vector2.right * speed;
                     break;
                 default:
