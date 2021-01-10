@@ -5,10 +5,11 @@ namespace Snake
     [RequireComponent(typeof(Rigidbody2D))]
     public class Movement : MonoBehaviour
     {
-        [SerializeField] public float speed = 1f;
+        [SerializeField] public static float speed = 1f;
 
         private Rigidbody2D rb2d;
         private Vector2 position;
+        private readonly float speedRotation = 20f;
         public int CurDirection { get; set; } = 0;
 
         private void Start()
@@ -29,25 +30,24 @@ namespace Snake
             {
                 case 0:
                     rb2d.velocity = Vector2.up * speed;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), speedRotation * Time.deltaTime);
                     break;
                 case 1:
                     rb2d.velocity = Vector2.down * speed;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 180), speedRotation * Time.deltaTime);
                     break;
                 case 2:
                     rb2d.velocity = Vector2.left * speed;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 90), speedRotation * Time.deltaTime);
                     break;
                 case 3:
                     rb2d.velocity = Vector2.right * speed;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -90), speedRotation * Time.deltaTime);
                     break;
                 default:
                     Debug.Log("Nothing");
                     break;
             }
         }
-
-        //rb2d.velocity = Vector3.right * runSpeed;
-        //gameObject.transform.Rotate(new Vector3(0, 0, 0));
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -90), speedRotation * Time.deltaTime);
-
     }
 }
