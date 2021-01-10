@@ -5,7 +5,7 @@ namespace Snake
     [RequireComponent(typeof(Rigidbody2D))]
     public class Movement : MonoBehaviour
     {
-        [SerializeField] public static float speed = 1f;
+        public float speed { get; set; } = 1f;
 
         private Rigidbody2D rb2d;
         private Vector2 position;

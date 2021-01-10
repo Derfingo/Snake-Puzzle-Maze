@@ -23,7 +23,7 @@ public class CollisionWithObjects : MonoBehaviour
             ScoreChanged?.Invoke(scoreValue);
             collision.GetComponent<IsEating>().OnHit();
             tail.AddNode();
-            Movement.speed += 0.1f;
+            velocitySnake.speed += 0.1f;
 
             if (OnEat != null)
             {
