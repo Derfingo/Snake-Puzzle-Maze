@@ -4,7 +4,7 @@ using Snake;
 using Food;
 using UI;
 
-public class CollisionWithObjects : MonoBehaviour
+public class PlayerCollision : MonoBehaviour
 {
     public UnityEvent OnEat;
     public MenuManager MenuManager;
@@ -41,9 +41,9 @@ public class CollisionWithObjects : MonoBehaviour
             MenuManager.OnGameOver();
         }
 
-        if (collision.gameObject.GetComponent<CapsuleCollider2D>())
-        {
-            //Debug.Log("Collision");
-        }
+        //if (collision.gameObject.GetComponent<CapsuleCollider2D>())
+        //{
+        //    Debug.Log("Collision");
+        //}
     }
 }

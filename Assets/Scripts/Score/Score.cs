@@ -5,23 +5,23 @@ namespace Score
 {
     public class Score : MonoBehaviour
     {
-        [SerializeField] private CollisionWithObjects collisionWithObjects;
+        [SerializeField] private PlayerCollision playerCollision;
         [SerializeField] private Text scoreText;
 
         private void Start()
         {
             scoreText = GetComponent<Text>();
-            collisionWithObjects = GameObject.Find("Head").GetComponent<CollisionWithObjects>();
+            playerCollision = GameObject.Find("Head").GetComponent<PlayerCollision>();
         }
 
         private void OnEnable()
         {
-            collisionWithObjects.ScoreChanged += OnScoreChanged;
+            playerCollision.ScoreChanged += OnScoreChanged;
         }
 
         private void OnDisable()
         {
-            collisionWithObjects.ScoreChanged -= OnScoreChanged;
+            playerCollision.ScoreChanged -= OnScoreChanged;
         }
 
         private void OnScoreChanged(int score)

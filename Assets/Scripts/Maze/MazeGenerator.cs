@@ -18,7 +18,7 @@ namespace Maze
 
     public class MazeGenerator
     {
-        public int Width = 8;
+        public int Width = 7;
         public int Height = 12;
 
         public MazeGeneratorCell[,] GenerateMaze()
