@@ -5,10 +5,12 @@ namespace Food
 {
     public class SpawnFood : MonoBehaviour
     {
+        public SnakeTail snakePosition;
+
         [SerializeField] protected GameObject FoodPrefab;
         private Vector2 foodPosition;
-        private Vector2 circleDeameter = new Vector2((float)0.4, (float)0.4);
-        private SnakeTail snakePosition;
+        private Vector2 circleDeameter = new Vector2(0.4f, 0.4f);
+        
 
         private void Spawn()
         {
@@ -24,7 +26,7 @@ namespace Food
 
         private void Start()
         {
-            snakePosition = GameObject.Find("Snake").GetComponent<SnakeTail>();
+            //snakePosition = GameObject.Find("Snake").GetComponent<SnakeTail>();
 
             InvokeRepeating(nameof(Spawn), 0, 4);  //spawn food every 4 seconds, starting in 0
         }

@@ -5,13 +5,12 @@ namespace Score
 {
     public class Score : MonoBehaviour
     {
-        [SerializeField] private PlayerCollision playerCollision;
-        [SerializeField] private Text scoreText;
+        public PlayerCollision playerCollision;
+        public Text scoreText;
 
         private void Start()
         {
-            scoreText = GetComponent<Text>();
-            playerCollision = GameObject.Find("Head").GetComponent<PlayerCollision>();
+            //playerCollision = GameObject.Find("Head").GetComponent<PlayerCollision>();
         }
 
         private void OnEnable()

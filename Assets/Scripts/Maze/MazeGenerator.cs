@@ -19,7 +19,7 @@ namespace Maze
     public class MazeGenerator
     {
         public int Width = 7;
-        public int Height = 12;
+        public int Height = 11;
 
         public MazeGeneratorCell[,] GenerateMaze()
         {
@@ -50,7 +50,7 @@ namespace Maze
 
         private void RemoveWallsWithBackTracker(MazeGeneratorCell[,] maze)
         {
-            MazeGeneratorCell currentCell = maze[0, 0];
+            MazeGeneratorCell currentCell = maze[0, 0]; //start cell
             currentCell.Visited = true;
 
             Stack<MazeGeneratorCell> stackCells = new Stack<MazeGeneratorCell>();

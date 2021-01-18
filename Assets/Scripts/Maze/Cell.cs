@@ -8,7 +8,6 @@ namespace Maze
     {
         public GameObject WallLeft;
         public GameObject WallBottom;
-
     }
 }
 

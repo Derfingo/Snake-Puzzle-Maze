@@ -5,30 +5,29 @@ namespace Snake
 {
     public class SnakeTail : MonoBehaviour
     {
-        [SerializeField] protected Transform snakeHead;
-        [SerializeField] protected Transform nodeTail;
-        [SerializeField] protected Transform nodeFirst;
-        [SerializeField] protected Transform nodeSecond;
-        [SerializeField] private float circleDiameter = .25f;
+        public Transform Node1;
+        public Transform Node2;
 
-        private List<Transform> snakeCircles = new List<Transform>();
-        private List<Vector2> crsPositions = new List<Vector2>();
-        private Vector2 snakePosition;
+        [SerializeField] protected Transform head;
+        [SerializeField] protected Transform nodePrefab;
+        [SerializeField] protected float circleDiameter = 0.25f;
 
-        public Vector2 GetSnakePosition
-        {
-            get => snakePosition;
-            set => snakePosition = value;
-        }
+        protected List<Transform> snakeCircles = new List<Transform>();
+        protected List<Vector2> crsPositions = new List<Vector2>();
+        protected Vector2 snakePosition;
+
+        public Vector2 GetSnakePosition => snakePosition;
 
         private void Start()
         {
             snakePosition = transform.position;
-            crsPositions.Add(nodeFirst.position);
-            snakeCircles.Add(nodeFirst);
-            crsPositions.Add(nodeSecond.position);
-            snakeCircles.Add(nodeSecond);
-            crsPositions.Add(nodeTail.position);
+
+            crsPositions.Add(Node1.position);
+            snakeCircles.Add(Node1);
+            crsPositions.Add(Node2.position);
+            snakeCircles.Add(Node2);
+
+            crsPositions.Add(nodePrefab.position);
         }
 
         private void Update()
@@ -38,11 +37,11 @@ namespace Snake
 
         private void MakeTail()
         {
-            float distance = Vector2.Distance(snakeHead.position, crsPositions[0]);
+            float distance = Vector2.Distance(head.position, crsPositions[0]);
 
             if (distance > circleDiameter)
             {
-                Vector2 direction = ((Vector2)snakeHead.position - crsPositions[0]).normalized;
+                Vector2 direction = ((Vector2)head.position - crsPositions[0]).normalized;
                 crsPositions.Insert(0, crsPositions[0] + direction * circleDiameter);
                 crsPositions.RemoveAt(crsPositions.Count - 1);
                 distance -= circleDiameter;
@@ -56,9 +55,10 @@ namespace Snake
 
         public void AddNode()
         {
-            Transform circle = Instantiate(nodeTail, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
-            snakeCircles.Add(circle);
-            crsPositions.Add(circle.position);
+            Transform newNode = Instantiate(nodePrefab, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
+            
+            snakeCircles.Add(newNode);
+            crsPositions.Add(newNode.position);
         }
     }
 }

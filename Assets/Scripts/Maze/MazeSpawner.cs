@@ -7,6 +7,7 @@ namespace Maze
     public class MazeSpawner : MonoBehaviour
     {
         public GameObject cellPrefab;
+        public GameObject MazePosition;
 
         private void Start()
         {
@@ -18,6 +19,8 @@ namespace Maze
                 for (int y = 0; y < maze.GetLength(1); y++)
                 {
                     Cell cell = Instantiate(cellPrefab, new Vector2(x, y), Quaternion.identity).GetComponent<Cell>();
+
+                    cell.transform.SetParent(MazePosition.transform, false);
 
                     cell.WallLeft.SetActive(maze[x, y].WallLeft);
                     cell.WallBottom.SetActive(maze[x, y].WallBottom);
