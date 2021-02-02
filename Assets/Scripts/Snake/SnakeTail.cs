@@ -1,64 +1,58 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Snake
+public class SnakeTail : MonoBehaviour
 {
-    public class SnakeTail : MonoBehaviour
+    public Transform Head;
+    public Transform Node;
+
+    public Vector2 SnakePosition { get; private set; }
+
+    [SerializeField] private float nodeDiameter = 0.28f;
+
+    private List<Transform> snakeNodes = new List<Transform>();
+    private List<Vector2> nodesDirection = new List<Vector2>();
+
+    private void Start()
     {
-        public Transform Node1;
-        public Transform Node2;
+        SnakePosition = transform.position;
 
-        [SerializeField] protected Transform head;
-        [SerializeField] protected Transform nodePrefab;
-        [SerializeField] protected float circleDiameter = 0.25f;
+        nodesDirection.Add(Head.position);
 
-        protected List<Transform> snakeCircles = new List<Transform>();
-        protected List<Vector2> crsPositions = new List<Vector2>();
-        protected Vector2 snakePosition;
+        nodesDirection.Add(Node.position);
+        snakeNodes.Add(Node);
 
-        public Vector2 GetSnakePosition => snakePosition;
+        MakeNode();
+    }
 
-        private void Start()
+    private void Update()
+    {
+        AddNodePosition();
+    }
+
+    private void AddNodePosition()
+    {
+        float distance = Vector2.Distance(Head.position, nodesDirection[0]);
+
+        if (distance > nodeDiameter)
         {
-            snakePosition = transform.position;
-
-            crsPositions.Add(Node1.position);
-            snakeCircles.Add(Node1);
-            crsPositions.Add(Node2.position);
-            snakeCircles.Add(Node2);
-
-            crsPositions.Add(nodePrefab.position);
+            Vector2 direction = ((Vector2)Head.position - nodesDirection[0]).normalized;
+            nodesDirection.Insert(0, nodesDirection[0] + direction * nodeDiameter);
+            nodesDirection.RemoveAt(nodesDirection.Count - 1);
+            distance -= nodeDiameter;
         }
 
-        private void Update()
+        for (int i = 0; i < snakeNodes.Count; i++)
         {
-            MakeTail();
+            snakeNodes[i].position = Vector2.Lerp(nodesDirection[i + 1], nodesDirection[i], distance / nodeDiameter);
         }
+    }
 
-        private void MakeTail()
-        {
-            float distance = Vector2.Distance(head.position, crsPositions[0]);
-
-            if (distance > circleDiameter)
-            {
-                Vector2 direction = ((Vector2)head.position - crsPositions[0]).normalized;
-                crsPositions.Insert(0, crsPositions[0] + direction * circleDiameter);
-                crsPositions.RemoveAt(crsPositions.Count - 1);
-                distance -= circleDiameter;
-            }
-
-            for (int i = 0; i < snakeCircles.Count; i++)
-            {
-                snakeCircles[i].position = Vector2.Lerp(crsPositions[i + 1], crsPositions[i], distance / circleDiameter);
-            }
-        }
-
-        public void AddNode()
-        {
-            Transform newNode = Instantiate(nodePrefab, crsPositions[crsPositions.Count - 1], Quaternion.identity, transform);
-            
-            snakeCircles.Add(newNode);
-            crsPositions.Add(newNode.position);
-        }
+    public void MakeNode()
+    {
+        Transform newNode = Instantiate(Node, nodesDirection[nodesDirection.Count - 1], Quaternion.identity, transform);
+        snakeNodes.Add(newNode);
+        nodesDirection.Add(newNode.position);
     }
 }

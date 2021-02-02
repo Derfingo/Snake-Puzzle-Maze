@@ -5,42 +5,35 @@ namespace Food
 {
     public class SpawnFood : MonoBehaviour
     {
-        public SnakeTail snakePosition;
+        public SnakeTail Snake;
+        public GameObject FoodPrefab;
+        public Camera SpawnArea;
 
-        [SerializeField] protected GameObject FoodPrefab;
         private Vector2 foodPosition;
-        private Vector2 circleDeameter = new Vector2(0.4f, 0.4f);
-        
-
-        private void Spawn()
-        {
-            do
-            {
-                foodPosition = new Vector2(Random.value, Random.value);
-                foodPosition = Camera.main.ViewportToWorldPoint(foodPosition);
-
-                Instantiate(FoodPrefab, foodPosition, Quaternion.identity);
-
-            } while (foodPosition == snakePosition.GetSnakePosition - circleDeameter && foodPosition == foodPosition - circleDeameter);
-        }
+        private Vector2 circleDeameter = new Vector2(2f, 2f);
 
         private void Start()
         {
-            //snakePosition = GameObject.Find("Snake").GetComponent<SnakeTail>();
-
-            InvokeRepeating(nameof(Spawn), 0, 4);  //spawn food every 4 seconds, starting in 0
+            InvokeRepeating(nameof(Spawn), 0f, 0.1f);  //spawn food every 4 seconds, starting in 1
         }
 
         private void Update()
         {
-            if (!FoodPrefab)
-            {
-                Spawn();
-            }
-            else
-            {
-                return;
-            }
+            MakeFoodPosition();
+        }
+
+        private void MakeFoodPosition()
+        {
+            foodPosition = new Vector2(Random.value, Random.value);
+            foodPosition = SpawnArea.ViewportToWorldPoint(foodPosition);
+        }
+
+        private void Spawn()
+        {
+            //foodPosition == Snake.SnakePosition - circleDeameter && foodPosition == foodPosition - circleDeameter
+            //foodPosition != Snake.SnakePosition
+
+            Instantiate(FoodPrefab, foodPosition, Quaternion.identity);
         }
     }
 }

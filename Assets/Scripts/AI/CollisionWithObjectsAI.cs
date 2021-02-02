@@ -14,7 +14,7 @@ public class CollisionWithObjectsAI : MonoBehaviour
         if (collision.gameObject.GetComponent<IsEating>())
         {
             collision.GetComponent<IsEating>().OnHit();
-            tail.AddNode();
+            //tail.AddNode();
 
             if (OnEat != null)
             {
