@@ -7,9 +7,9 @@ public class SnakeTail : MonoBehaviour
     [SerializeField] private Transform Head;
     [SerializeField] private Transform Node;
 
-    public Vector2 SnakePosition { get; private set; }
-
     [SerializeField] private float nodeDiameter = 0.28f;
+
+    public Vector2 SnakePosition { get; private set; }
 
     private readonly List<Transform> snakeNodes = new List<Transform>();
     private readonly List<Vector2> nodesDirection = new List<Vector2>();

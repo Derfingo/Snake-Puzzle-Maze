@@ -5,8 +5,8 @@ namespace Score
 {
     public class Score : MonoBehaviour
     {
-        public PlayerCollision playerCollision;
-        public Text scoreText;
+        [SerializeField] private PlayerCollision playerCollision;
+        [SerializeField] private Text scoreText;
 
         private void Start()
         {

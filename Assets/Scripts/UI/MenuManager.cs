@@ -5,11 +5,11 @@ namespace UI
 {
     public class MenuManager : MonoBehaviour
     {
-        public GameObject GameOverPanel;
-        public GameObject GameWonPanel;
-        public GameObject PauseMenuPanel;
+        [SerializeField] GameObject GameOverPanel;
+        [SerializeField] GameObject GameWonPanel;
+        [SerializeField] GameObject PauseMenuPanel;
 
-        public GameObject ButtonMenu;
+        [SerializeField] GameObject ButtonMenu;
 
         public static bool GameIsPaused = false;
         public static bool GameEnded = false;

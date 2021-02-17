@@ -6,7 +6,7 @@ namespace UI
 {
     public class SafeAreaSetter : MonoBehaviour
     {
-        public Canvas canvas;
+        [SerializeField] private Canvas canvas;
         private RectTransform panelSafeArea;
 
         Rect currentSaveArea = new Rect();
