@@ -7,19 +7,10 @@ namespace UI
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] protected GameObject SnakeAI;
-
-        private void Start()
-        {
-            StartCoroutine(routine: CoroutineMethod());
-        }
-
-        private IEnumerator CoroutineMethod()
-        {
-            yield return new WaitForSeconds(3);
-
-            SnakeAI.SetActive(true);
-        }
+        [SerializeField] private GameObject GameOptionsPanel;
+        [SerializeField] private GameObject StartScreenPanel;
+        [SerializeField] private GameObject StartMenuPanel;
+        [SerializeField] private GameObject ModesMenuPanel;
 
         public void OnPlayHandler()
         {
@@ -29,6 +20,24 @@ namespace UI
         public void OnExitHandler()
         {
             Application.Quit();
+        }
+
+        public void OnStartMenu()
+        {
+            GameOptionsPanel.SetActive(false);
+            StartScreenPanel.SetActive(true);
+        }
+
+        public void OnModesMenu()
+        {
+            StartMenuPanel.SetActive(false);
+            ModesMenuPanel.SetActive(true);
+        }
+
+        public void OnGameOptions()
+        {
+            StartScreenPanel.SetActive(false);
+            GameOptionsPanel.SetActive(true);
         }
     }
 }

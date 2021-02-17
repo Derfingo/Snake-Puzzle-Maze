@@ -5,16 +5,15 @@ namespace Food
 {
     public class SpawnFood : MonoBehaviour
     {
-        public SnakeTail Snake;
-        public GameObject FoodPrefab;
-        public Camera SpawnArea;
+        [SerializeField] private SnakeTail Snake;
+        [SerializeField] private GameObject FoodPrefab;
+        [SerializeField] private BoxCollider2D boxCollider2D;
 
         private Vector2 foodPosition;
-        private Vector2 circleDeameter = new Vector2(2f, 2f);
 
         private void Start()
         {
-            InvokeRepeating(nameof(Spawn), 0f, 0.1f);  //spawn food every 4 seconds, starting in 1
+            InvokeRepeating(nameof(Spawn), 0.1f, 3f);  //spawn food every 3 seconds, starting in 0.1
         }
 
         private void Update()
@@ -24,16 +23,27 @@ namespace Food
 
         private void MakeFoodPosition()
         {
-            foodPosition = new Vector2(Random.value, Random.value);
-            foodPosition = SpawnArea.ViewportToWorldPoint(foodPosition);
+            foodPosition = new Vector2(Random.Range(boxCollider2D.bounds.min.x + 0.5f, boxCollider2D.bounds.max.x - 0.5f),
+                                       Random.Range(boxCollider2D.bounds.min.y + 0.5f, boxCollider2D.bounds.max.y - 0.5f));
+        }
+
+        private float DistanceFoodToPlayer()
+        {
+            float distance = Vector2.Distance(foodPosition, Snake.SnakePosition);
+
+            return distance;
         }
 
         private void Spawn()
         {
-            //foodPosition == Snake.SnakePosition - circleDeameter && foodPosition == foodPosition - circleDeameter
-            //foodPosition != Snake.SnakePosition
-
-            Instantiate(FoodPrefab, foodPosition, Quaternion.identity);
+            if (DistanceFoodToPlayer() > 1f)
+            {
+                Instantiate(FoodPrefab, foodPosition, Quaternion.identity, transform);
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

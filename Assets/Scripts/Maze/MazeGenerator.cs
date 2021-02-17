@@ -14,6 +14,7 @@ namespace Maze
         public bool WallBottom = true;
 
         public bool Visited = false;
+        public int DistanceFromStart;
     }
 
     public class MazeGenerator
@@ -45,13 +46,17 @@ namespace Maze
 
             RemoveWallsWithBackTracker(maze);
 
+            PlaceMazeExit(maze);
+
             return maze;
         }
 
         private void RemoveWallsWithBackTracker(MazeGeneratorCell[,] maze)
         {
             MazeGeneratorCell currentCell = maze[0, 0]; //start cell
+
             currentCell.Visited = true;
+            currentCell.DistanceFromStart = 0;
 
             Stack<MazeGeneratorCell> stackCells = new Stack<MazeGeneratorCell>();
 
@@ -90,6 +95,7 @@ namespace Maze
                     chosen.Visited = true;
                     stackCells.Push(chosen);
                     currentCell = chosen;
+                    chosen.DistanceFromStart = stackCells.Count;
                 }
                 else
                 {
@@ -122,6 +128,54 @@ namespace Maze
                 {
                     b.WallLeft = false;
                 }
+            }
+        }
+
+        public void PlaceMazeExit(MazeGeneratorCell[,] maze)
+        {
+            MazeGeneratorCell furthest = maze[0, 0];
+
+            for (int x = 0; x < maze.GetLength(0); x++)
+            {
+                if (maze[x, Height - 2].DistanceFromStart > furthest.DistanceFromStart)
+                {
+                    furthest = maze[x, Height - 2];
+                }
+
+                if (maze[x, 0].DistanceFromStart > furthest.DistanceFromStart)
+                {
+                    furthest = maze[x, 0];
+                }
+            }
+
+            for (int y = 0; y < maze.GetLength(1); y++)
+            {
+                if (maze[Width - 2, y].DistanceFromStart > furthest.DistanceFromStart)
+                {
+                    furthest = maze[Width - 2, y];
+                }
+
+                if (maze[0, y].DistanceFromStart > furthest.DistanceFromStart)
+                {
+                    furthest = maze[0, y];
+                }
+            }
+
+            if (furthest.CellByX == 0)
+            {
+                furthest.WallLeft = false;
+            }
+            else if (furthest.CellByY == 0)
+            {
+                furthest.WallBottom = false;
+            }
+            else if (furthest.CellByX == Width - 2)
+            {
+                maze[furthest.CellByX + 1, furthest.CellByY].WallLeft = false;
+            }
+            else if (furthest.CellByY == Height - 2)
+            {
+                maze[furthest.CellByX, furthest.CellByY + 1].WallBottom = false;
             }
         }
     }

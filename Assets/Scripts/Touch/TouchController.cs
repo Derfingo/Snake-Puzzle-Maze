@@ -5,10 +5,10 @@ namespace TouchControll
 {
     public class TouchController : MonoBehaviour
     {
-        public Movement movement;
+        [SerializeField] private Movement Movement;
 
-        [SerializeField] private bool detectSwipeOnlyAfterRelease = false;
-        [SerializeField] private float swipeThreshold = 20f;
+        [SerializeField] private bool DetectSwipeOnlyAfterRelease = false;
+        [SerializeField] private float SwipeThreshold = 20f;
 
         //private const float inchesToCentimeters = 2.54f;
 
@@ -46,7 +46,7 @@ namespace TouchControll
 
                 if (touch.phase == TouchPhase.Moved)
                 {
-                    if (!detectSwipeOnlyAfterRelease)
+                    if (!DetectSwipeOnlyAfterRelease)
                     {
                         fingerDown = touch.position;
                         DefineSwipeDirection();
@@ -63,33 +63,33 @@ namespace TouchControll
 
         private void DefineSwipeDirection()
         {
-            if (VerticalMove > swipeThreshold && VerticalMove > HorizontalMove)
+            if (VerticalMove > SwipeThreshold && VerticalMove > HorizontalMove)
             {
-                int verticalDirection = movement.CurDirection;
+                int verticalDirection = Movement.CurDirection;
 
                 if (fingerDown.y - fingerUp.y > 0 && verticalDirection != 1)
                 {
-                    movement.CurDirection = (int)SwipeDirection.Up;
+                    Movement.CurDirection = (int)SwipeDirection.Up;
                 }
 
                 if (fingerDown.y - fingerUp.y < 0 && verticalDirection != 0)
                 {
-                    movement.CurDirection = (int)SwipeDirection.Down;
+                    Movement.CurDirection = (int)SwipeDirection.Down;
                 }
             }
 
-            if (HorizontalMove > swipeThreshold && HorizontalMove > VerticalMove)
+            if (HorizontalMove > SwipeThreshold && HorizontalMove > VerticalMove)
             {
-                int horizontalDirection = movement.CurDirection;
+                int horizontalDirection = Movement.CurDirection;
 
                 if (fingerDown.x - fingerUp.x < 0 && horizontalDirection != 3)
                 {
-                    movement.CurDirection = (int)SwipeDirection.Left;
+                    Movement.CurDirection = (int)SwipeDirection.Left;
                 }
 
                 if (fingerDown.x - fingerUp.x > 0 && horizontalDirection != 2)
                 {
-                    movement.CurDirection = (int)SwipeDirection.Right;
+                    Movement.CurDirection = (int)SwipeDirection.Right;
                 }
             }
         }

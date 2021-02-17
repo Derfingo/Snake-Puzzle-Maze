@@ -7,7 +7,7 @@ namespace UI
     public class SafeAreaSetter : MonoBehaviour
     {
         public Canvas canvas;
-        RectTransform panelSafeArea;
+        private RectTransform panelSafeArea;
 
         Rect currentSaveArea = new Rect();
         ScreenOrientation currentOrientation = ScreenOrientation.AutoRotation;

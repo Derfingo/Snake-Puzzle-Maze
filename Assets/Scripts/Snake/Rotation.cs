@@ -5,7 +5,7 @@ using Snake;
 
 public class Rotation : MonoBehaviour
 {
-    public Movement Direction;
+    [SerializeField] private Movement Direction;
 
     private readonly float speedRotation = 5f;
 

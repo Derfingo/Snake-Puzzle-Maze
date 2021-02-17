@@ -6,8 +6,8 @@ namespace Maze
 {
     public class MazeSpawner : MonoBehaviour
     {
-        public GameObject cellPrefab;
-        public GameObject MazePosition;
+        [SerializeField] private GameObject CellPrefab;
+        [SerializeField] private GameObject MazePosition;
 
         private void Start()
         {
@@ -18,7 +18,7 @@ namespace Maze
             {
                 for (int y = 0; y < maze.GetLength(1); y++)
                 {
-                    Cell cell = Instantiate(cellPrefab, new Vector2(x, y), Quaternion.identity).GetComponent<Cell>();
+                    Cell cell = Instantiate(CellPrefab, new Vector2(x, y), Quaternion.identity).GetComponent<Cell>();
 
                     cell.transform.SetParent(MazePosition.transform, false);
 

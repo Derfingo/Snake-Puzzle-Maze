@@ -5,46 +5,85 @@ namespace UI
 {
     public class MenuManager : MonoBehaviour
     {
-        public static bool gameIsPaused = false;
+        public GameObject GameOverPanel;
+        public GameObject GameWonPanel;
+        public GameObject PauseMenuPanel;
 
-        public GameObject gameOver;
-        public GameObject pauseMenu;
-        public GameObject buttonPauseMenu;
+        public GameObject ButtonMenu;
 
-        public void OnGameOver()
+        public static bool GameIsPaused = false;
+        public static bool GameEnded = false;
+
+        private static MenuManager instance;
+        public static MenuManager Instance
         {
-            gameOver.SetActive(true);
-            Time.timeScale = 0f;
-            gameIsPaused = true;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = FindObjectOfType<MenuManager>();
+                    if (instance == null)
+                    {
+                        instance = new GameObject().AddComponent<MenuManager>();
+                    }
+                }
+
+                return instance;
+            }
         }
 
-        private void RestartGame()
+        private void Awake()
+        {
+            if (instance != null)
+            {
+                Destroy(obj: this);
+                DontDestroyOnLoad(target: this);
+            }
+        }
+
+        public void GameOver()
+        {
+            if (true)
+            {
+                GameEnded = true;
+                GameOverPanel.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
+
+        public void GameWon()
+        {
+            GameWonPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
+        public void Restart()
         {
             Time.timeScale = 1f;
+            GameEnded = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            gameIsPaused = false;
         }
 
-        private void OnPauseGame()
+        public void Pause()
         {
-            pauseMenu.SetActive(true);
-            buttonPauseMenu.SetActive(false);
+            PauseMenuPanel.SetActive(true);
+            ButtonMenu.SetActive(false);
             Time.timeScale = 0f;
-            gameIsPaused = true;
+            GameIsPaused = true;
         }
 
-        private void OnResumeGame()
+        public void Resume()
         {
+            PauseMenuPanel.SetActive(false);
             Time.timeScale = 1f;
-            pauseMenu.SetActive(false);
-            buttonPauseMenu.SetActive(true);
-            gameIsPaused = false;
+            ButtonMenu.SetActive(true);
+            GameIsPaused = false;
         }
 
-        private void OnMainMenu()
+        public void MainMenu()
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

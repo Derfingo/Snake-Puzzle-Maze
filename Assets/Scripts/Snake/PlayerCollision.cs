@@ -6,12 +6,12 @@ using UI;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public UnityEvent OnEat;
-    public MenuManager MenuManager;
-    public event UnityAction<int> ScoreChanged;
+    public SnakeTail SnakeTail;
+    public Movement Movement;
 
-    [SerializeField] protected SnakeTail tail;
-    [SerializeField] protected Movement velocitySnake;
+    public UnityEvent OnEat;
+
+    public event UnityAction<int> ScoreChanged;
 
     private int scoreValue = 0;
 
@@ -19,13 +19,14 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<IsEating>())
         {
+            Debug.Log("FOOD");
             scoreValue++;
             ScoreChanged?.Invoke(scoreValue);
             collision.GetComponent<IsEating>().OnHit();
-            tail.MakeNode();
-            velocitySnake.Speed += 0.1f;
+            SnakeTail.MakeNode();
+            Movement.Speed += 0.05f;
 
-            if (OnEat != null)
+            if (OnEat != null)    //OnEat?.Invoke();
             {
                 OnEat.Invoke();
             }
@@ -33,12 +34,25 @@ public class PlayerCollision : MonoBehaviour
 
         if (collision.gameObject.GetComponent<CompositeCollider2D>())
         {
-            MenuManager.OnGameOver();
+            MenuManager.Instance.GameOver();
+        }
+
+        if (collision.gameObject.GetComponent<BoxCollider2D>())
+        {
+            Debug.Log("BOXCollider");
+            MenuManager.Instance.GameOver();
         }
 
         if (collision.gameObject.GetComponent<NodeTail>())
         {
-            MenuManager.OnGameOver();
+            Debug.Log("NODETail");
+            MenuManager.Instance.GameOver();
+        }
+
+        if (collision.gameObject.GetComponent<LevelComplete>())
+        {
+            Debug.Log("LEVELComplete");
+            MenuManager.Instance.GameWon();
         }
     }
 }

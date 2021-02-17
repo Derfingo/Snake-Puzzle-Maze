@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SnakeTail : MonoBehaviour
 {
-    public Transform Head;
-    public Transform Node;
+    [SerializeField] private Transform Head;
+    [SerializeField] private Transform Node;
 
     public Vector2 SnakePosition { get; private set; }
 
     [SerializeField] private float nodeDiameter = 0.28f;
 
-    private List<Transform> snakeNodes = new List<Transform>();
-    private List<Vector2> nodesDirection = new List<Vector2>();
+    private readonly List<Transform> snakeNodes = new List<Transform>();
+    private readonly List<Vector2> nodesDirection = new List<Vector2>();
 
     private void Start()
     {
