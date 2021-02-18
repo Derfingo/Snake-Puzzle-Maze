@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8981513759085833841}
   - component: {fileID: 607066610}
   - component: {fileID: 607066609}
+  - component: {fileID: 453566185}
   m_Layer: 0
   m_Name: Snake
   m_TagString: SnakeHead
@@ -68,9 +69,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f0283527e0b6b439ab2ceb5cdb5740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 607066609}
-  detectSwipeOnlyAfterRelease: 0
-  swipeThreshold: 20
+  Movement: {fileID: 607066609}
+  DetectSwipeOnlyAfterRelease: 0
+  SwipeThreshold: 80
 --- !u!114 &607066609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +84,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad145ecf8a0d704bb3e0751f3c04178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &453566185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981513759085833852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fee7409b5ba7094db027e29c0dd8ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Head: {fileID: 8981513760210068056}
+  Node: {fileID: 8632514587037473076}
+  nodeDiameter: 0.28
 --- !u!1 &8981513760210068057
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,8 +111,9 @@ GameObject:
   - component: {fileID: 8981513760210068059}
   - component: {fileID: 5421685500864790526}
   - component: {fileID: 311428346837191488}
-  - component: {fileID: 5125355720248955025}
   - component: {fileID: 1193245598}
+  - component: {fileID: 1195260015}
+  - component: {fileID: 6159170101814759095}
   m_Layer: 0
   m_Name: Head
   m_TagString: TaleSnake
@@ -181,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057a371511a64d344b22a271d69b1db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SnakeTail: {fileID: 453566185}
+  Movement: {fileID: 607066609}
   OnEat:
     m_PersistentCalls:
       m_Calls:
@@ -196,9 +215,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  MenuManager: {fileID: 0}
-  tail: {fileID: 0}
-  velocitySnake: {fileID: 607066609}
 --- !u!82 &311428346837191488
 AudioSource:
   m_ObjectHideFlags: 0
@@ -295,22 +311,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!70 &5125355720248955025
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8981513760210068057}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.06}
-  m_Size: {x: 0.2, y: 0.15}
-  m_Direction: 1
 --- !u!50 &1193245598
 Rigidbody2D:
   serializedVersion: 4
@@ -332,6 +332,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1195260015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981513760210068057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc7248c4eda40ff4db96c0ae9d2bdca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Direction: {fileID: 607066609}
+--- !u!58 &6159170101814759095
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981513760210068057}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.04}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1001 &3633524022036846
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,7 +371,7 @@ PrefabInstance:
     - target: {fileID: 8021565990540968030, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
       propertyPath: m_Name
-      value: Node1
+      value: Node
       objectReference: {fileID: 0}
     - target: {fileID: 8628952875674030170, guid: 0134a150008dff145923d15bd5b6a30f,
         type: 3}
