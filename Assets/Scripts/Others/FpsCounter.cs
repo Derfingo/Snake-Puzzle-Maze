@@ -12,7 +12,7 @@ public class FpsCounter : MonoBehaviour
 
         style.alignment = TextAnchor.UpperLeft;
         style.fontSize = h * 3 / 100;
-        style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
+        style.normal.textColor = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
     private void Update()
@@ -24,7 +24,7 @@ public class FpsCounter : MonoBehaviour
     {
         int w = Screen.width, h = Screen.height;
 
-        var rect = new Rect(20, 200, w, h * 2f / 100f);
+        var rect = new Rect(20, 20, w, h * 2f / 100f);
         var msec = deltaTime * 1000.0f;
         var fps = 1.0f / deltaTime;
         var text = $"{msec:0.0} ms({fps:0.} fps)";

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7293630174594093871}
   - component: {fileID: 5765315491016475473}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6817716128392662716}
   - component: {fileID: -2672694593865315611}
   - component: {fileID: -8893663915094082639}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Food
   m_TagString: Food
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ Animator:
   m_GameObject: {fileID: 8119724336000959299}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8058596697f2a84abef1077ae6095be, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

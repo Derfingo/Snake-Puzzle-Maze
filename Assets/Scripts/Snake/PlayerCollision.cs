@@ -6,8 +6,8 @@ using UI;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public SnakeTail SnakeTail;
-    public Movement Movement;
+    [SerializeField] private SnakeTail SnakeTail;
+    [SerializeField] private Movement Movement;
 
     public UnityEvent OnEat;
 
@@ -19,12 +19,11 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<IsEating>())
         {
-            Debug.Log("FOOD");
             scoreValue++;
             ScoreChanged?.Invoke(scoreValue);
             collision.GetComponent<IsEating>().OnHit();
             SnakeTail.MakeNode();
-            Movement.Speed += 0.05f;
+            Movement.Speed += 0.025f;
 
             if (OnEat != null)    //OnEat?.Invoke();
             {
@@ -39,19 +38,16 @@ public class PlayerCollision : MonoBehaviour
 
         if (collision.gameObject.GetComponent<BoxCollider2D>())
         {
-            Debug.Log("BOXCollider");
             MenuManager.Instance.GameOver();
         }
 
         if (collision.gameObject.GetComponent<NodeTail>())
         {
-            Debug.Log("NODETail");
             MenuManager.Instance.GameOver();
         }
 
         if (collision.gameObject.GetComponent<LevelComplete>())
         {
-            Debug.Log("LEVELComplete");
             MenuManager.Instance.GameWon();
         }
     }

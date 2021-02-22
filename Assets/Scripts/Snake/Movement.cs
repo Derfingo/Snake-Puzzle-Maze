@@ -7,7 +7,7 @@ namespace Snake
     {
         private Rigidbody2D rb2d;
 
-        private float speed = 1.5f;
+        private float speed = 1f;
         public float Speed
         {
             get => speed;
