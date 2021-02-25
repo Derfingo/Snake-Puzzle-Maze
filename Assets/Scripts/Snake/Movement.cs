@@ -7,7 +7,7 @@ namespace Snake
     {
         private Rigidbody2D rb2d;
 
-        private float speed = 1f;
+        private float speed = 50f;
         public float Speed
         {
             get => speed;
@@ -36,19 +36,19 @@ namespace Snake
             switch (curDirection)
             {
                 case 0:
-                    rb2d.velocity = Vector2.up * speed;
+                    rb2d.velocity = Vector3.up * speed * Time.deltaTime;
                     break;
                 case 1:
-                    rb2d.velocity = Vector2.down * speed;
+                    rb2d.velocity = Vector3.down * speed * Time.deltaTime;
                     break;
                 case 2:
-                    rb2d.velocity = Vector2.left * speed;
+                    rb2d.velocity = Vector3.left * speed * Time.deltaTime;
                     break;
                 case 3:
-                    rb2d.velocity = Vector2.right * speed;
+                    rb2d.velocity = Vector3.right * speed * Time.deltaTime;
                     break;
                 case 4:
-                    rb2d.velocity = Vector2.zero;
+                    rb2d.velocity = Vector3.zero;
                     break;
             }
         }

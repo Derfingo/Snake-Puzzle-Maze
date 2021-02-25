@@ -8,11 +8,6 @@ namespace Score
         [SerializeField] private PlayerCollision playerCollision;
         [SerializeField] private Text scoreText;
 
-        private void Start()
-        {
-            //playerCollision = GameObject.Find("Head").GetComponent<PlayerCollision>();
-        }
-
         private void OnEnable()
         {
             playerCollision.ScoreChanged += OnScoreChanged;
