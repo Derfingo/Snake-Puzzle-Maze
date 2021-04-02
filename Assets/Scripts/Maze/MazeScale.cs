@@ -6,15 +6,15 @@ namespace Maze
 {
     public class MazeScale : MonoBehaviour
     {
-        [SerializeField] private float localScale = 0.78f;
+        [SerializeField] private float localScale = 0.8f;
 
-        private Transform mazePositin;
+        private Transform mazePosition;
 
         void Start()
         {
-            mazePositin = GetComponent<Transform>();
+            mazePosition = GetComponent<Transform>();
 
-            mazePositin.localScale *= localScale;
+            mazePosition.localScale *= localScale;
         }
 
     }

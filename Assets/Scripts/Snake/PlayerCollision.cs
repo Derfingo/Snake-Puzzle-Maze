@@ -39,18 +39,18 @@ public class PlayerCollision : MonoBehaviour
 
         if (collision.gameObject.GetComponent<BoostSpeed>())
         {
-            StartCoroutine(nameof(BoostSpeedPlayer));
+            StartCoroutine(BoostSpeedPlayer());
         }
 
-        if (collision.gameObject.GetComponent<CompositeCollider2D>())
+        if (collision.gameObject.GetComponent<RotationCell>())
         {
             MenuManager.Instance.GameOver();
         }
 
-        if (collision.gameObject.GetComponent<BoxCollider2D>())
-        {
-            MenuManager.Instance.GameOver();
-        }
+        //if (collision.gameObject.GetComponent<CompositeCollider2D>())
+        //{
+        //    MenuManager.Instance.GameOver();
+        //}
 
         if (collision.gameObject.GetComponent<NodeTail>())
         {
@@ -65,10 +65,10 @@ public class PlayerCollision : MonoBehaviour
 
     private IEnumerator BoostSpeedPlayer()
     {
-        Movement.Speed += 30f;
+        Movement.Speed += 40f;
         yield return new WaitForSeconds(3);
-        Movement.Speed -= 30f;
+        Movement.Speed -= 40f;
 
-        yield return null;
+        yield break;
     }
 }

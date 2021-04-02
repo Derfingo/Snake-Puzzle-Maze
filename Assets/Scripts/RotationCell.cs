@@ -4,25 +4,54 @@ using UnityEngine;
 
 public class RotationCell : MonoBehaviour
 {
-    private Transform cell;
+    [SerializeField] private float firstDelay = 0;
+    //[SerializeField] private float lastDelay = 0;
+    [SerializeField] private float rangeX = 1f;
+    //[SerializeField] private float rangeY = 1f;
+    //[SerializeField] private float moveSpeed = 1f;
 
-    private void Start()
+    //private Transform cell;
+
+    //private void Start()
+    //{
+    //    cell = GetComponent<Transform>();
+    //}
+
+    private void Update()
     {
-        cell = GetComponent<Transform>();
+        StartCoroutine(MoveCell());
 
-        StartCoroutine(nameof(RotateCell));
+        if (Input.GetMouseButtonDown(0))
+        {
+            Test();
+        }
     }
 
-    private IEnumerator RotateCell()
+    private IEnumerator MoveCell()
     {
-        cell.rotation = Quaternion.Lerp(cell.rotation, Quaternion.Euler(0, 0, 90), 10f *  Time.deltaTime);
+        if (rangeX > 0)
+        {
+            float moveX = Mathf.PingPong(Time.time, rangeX);
+            transform.position = new Vector3(moveX, 0, 0);
 
-        yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(firstDelay);
+        }
+        else
+        {
+            transform.Translate(transform.position, 0f);
+        }
 
-        cell.rotation = Quaternion.Lerp(cell.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime);
+        //if (rangeY > 0)
+        //{
+        //    float moveY = Mathf.PingPong(Time.time, rangeY);
+        //    cell.position = new Vector3(0, moveY, 0);
+        //}
+    }
 
-        yield return new WaitUntil(predicate: () => Input.GetKeyDown(KeyCode.Space));
+    private void Test()
+    {
+        StopAllCoroutines();
 
-        cell.rotation = Quaternion.Lerp(cell.rotation, Quaternion.Euler(0, 0, 180), Time.deltaTime);
+        transform.position = Vector3.zero;
     }
 }

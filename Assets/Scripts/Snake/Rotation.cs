@@ -7,7 +7,7 @@ public class Rotation : MonoBehaviour
 {
     [SerializeField] private Movement Direction;
 
-    private readonly float speedRotation = 5f;
+    private readonly float speedRotation = 7f;
 
     private void Update()
     {

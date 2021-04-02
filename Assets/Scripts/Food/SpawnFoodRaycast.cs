@@ -59,7 +59,7 @@ namespace Food
             {
                 PositionRaycast();
 
-                yield return new WaitForSeconds(Random.Range(1f, 4f));
+                yield return new WaitForSeconds(Random.Range(0f, 5f));
             }
         }
     }

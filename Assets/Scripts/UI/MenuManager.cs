@@ -14,7 +14,7 @@ namespace UI
         public static bool GameIsPaused = false;
         public static bool GameEnded = false;
 
-        private static MenuManager instance;
+        private static MenuManager instance = null;
         public static MenuManager Instance
         {
             get

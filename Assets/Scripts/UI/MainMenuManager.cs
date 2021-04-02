@@ -53,5 +53,10 @@ namespace UI
             LevelsMenu.SetActive(false);
             MainMenu.SetActive(true);
         }
+
+        public void LoadLevel01()
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 }

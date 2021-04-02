@@ -29,7 +29,7 @@ namespace TouchControll
         //    }
         //}
 
-        private void FixedUpdate()
+        private void Update()
         {
             DetectSwipe();
         }

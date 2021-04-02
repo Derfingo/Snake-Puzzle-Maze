@@ -322,6 +322,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8260228409304571345}
   - component: {fileID: 8260228409304571346}
+  - component: {fileID: 2101886245}
+  - component: {fileID: 2101886244}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -359,3 +361,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WallLeft: {fileID: 8260228408670484561}
   WallBottom: {fileID: 8260228408757169794}
+--- !u!50 &2101886245
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260228409304571347}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &2101886244
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260228409304571347}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 8260228408670484560}
+    m_ColliderPaths:
+    - - X: 501131
+        Y: -501425
+      - X: 501131
+        Y: 10501425
+      - X: -501424
+        Y: 10501132
+      - X: -501131
+        Y: -501425
+  - m_Collider: {fileID: 8260228408757169793}
+    m_ColliderPaths:
+    - - X: 10492822
+        Y: -493115
+      - X: 10492822
+        Y: 493115
+      - X: -493115
+        Y: 492822
+      - X: -492822
+        Y: -493115
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 0.0500838, y: -0.0501425}
+      - {x: 0.0501425, y: -0.0493115}
+      - {x: 1.0492822, y: -0.0492822}
+      - {x: 1.0492529, y: 0.0493115}
+      - {x: 0.0501131, y: 0.0493143}
+      - {x: 0.0500838, y: 1.0501425}
+      - {x: -0.0501424, y: 1.0500839}
+      - {x: -0.0500838, y: -0.0501425}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005

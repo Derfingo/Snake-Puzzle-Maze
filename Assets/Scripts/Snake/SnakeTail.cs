@@ -24,6 +24,7 @@ public class SnakeTail : MonoBehaviour
         snakeNodes.Add(Node);
 
         MakeNode();
+        MakeNode();
     }
 
     private void Update()
